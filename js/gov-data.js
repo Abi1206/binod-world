@@ -94,10 +94,18 @@ const GOV = {
         if (!this.publications) this.publications = { laws: [], whitePapers: [], pressReleases: [], notices: [], decrees: [], orders: [], announcements: [] };
         const p = live.publications;
         const map = fn => x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description ?? x.content ?? x.category ?? '' });
-        if (p.laws?.length)         this.publications.laws        = p.laws.map(map());
-        if (p.whitePapers?.length)  this.publications.whitePapers = p.whitePapers.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.category || x.content?.substring(0, 120) || '' }));
-        if (p.announcements?.length) this.publications.notices    = p.announcements.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.content || '' }));
-        if (p.decrees?.length)      this.publications.decrees     = p.decrees.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description || '', active: x.active }));
+        if (p.laws?.length)          this.publications.laws        = p.laws.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description || '' }));
+        if (p.whitePapers?.length)   this.publications.whitePapers = p.whitePapers.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.category || x.content?.substring(0, 120) || '' }));
+        if (p.announcements?.length) this.publications.notices     = p.announcements.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.content || '' }));
+        if (p.decrees?.length)       this.publications.decrees     = p.decrees.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description || '', active: x.active }));
+        if (p.constitution) {
+          this.publications.constitution = {
+            preamble:   p.constitution.preamble || '',
+            publishDay: p.constitution.publishDay || 0,
+            articles:   (p.constitution.articles || []).map(a => ({ title: a.title, body: a.content || '', date: a.day })),
+            amendments: (p.constitution.amendments || []).map(a => ({ title: a.title, body: a.content || '', date: a.day }))
+          };
+        }
       }
     } catch (_) {}
   },
@@ -349,23 +357,27 @@ const GOV = {
     const el = document.getElementById('constitution-data');
     if (!el || !this.publications) return;
     const con = this.publications.constitution;
-    if (!con.preamble && con.articles.length === 0) {
-      el.innerHTML = '<div class="no-data-msg">The Constitution has not yet been published by the President.</div>';
+    if (!con || (!con.preamble && (!con.articles || con.articles.length === 0))) {
+      el.innerHTML = '<div class="no-data-msg">The Constitution has not yet been published by the President. Once authored in the Government ID Panel, it will appear here automatically.</div>';
       return;
     }
     let html = '';
-    if (con.preamble) html += `<div class="constitution-preamble"><h3>Preamble</h3><p>${con.preamble}</p></div>`;
-    if (con.articles.length > 0) {
+    if (con.preamble) {
+      html += `<div class="constitution-preamble"><h3>Preamble</h3>${this.formatContent(con.preamble)}</div>`;
+    }
+    if (con.articles && con.articles.length > 0) {
       html += '<div class="constitution-articles"><h3>Articles</h3>';
       con.articles.forEach((a, i) => {
-        html += `<div class="constitution-article"><h4>Article ${i + 1}: ${a.title}</h4><p>${a.body}</p></div>`;
+        const meta = a.date ? ` <span class="pub-info-inline">${this.formatDate(a.date)}</span>` : '';
+        html += `<div class="constitution-article"><h4>Article ${i + 1}: ${a.title}${meta}</h4>${this.formatContent(a.body || '')}</div>`;
       });
       html += '</div>';
     }
-    if (con.amendments.length > 0) {
+    if (con.amendments && con.amendments.length > 0) {
       html += '<div class="constitution-amendments"><h3>Amendments</h3>';
       con.amendments.forEach((a, i) => {
-        html += `<div class="constitution-article"><h4>Amendment ${i + 1}: ${a.title} (${this.formatDate(a.date)})</h4><p>${a.body}</p></div>`;
+        const meta = a.date ? ` — ${this.formatDate(a.date)}` : '';
+        html += `<div class="constitution-article"><h4>Amendment ${i + 1}: ${a.title}${meta}</h4>${this.formatContent(a.body || '')}</div>`;
       });
       html += '</div>';
     }
