@@ -1,15 +1,12 @@
 {
   "_meta": {
     "lastUpdated": "2026-06-25T00:00:00Z",
-    "worldDay": 0,
-    "exportedBy": "Binod World Government",
-    "version": "2.13.3"
+    "note": "Edit this file to update president, election status, nation leaders, and government info."
   },
   "government": {
     "name": "Binod World Government",
     "established": "2014",
     "motto": "One World • Many Nations • Shared Prosperity",
-    "website": "https://binod.world",
     "instagram": "@pmobinod",
     "contact": "pmobinod@gmail.com"
   },
@@ -18,31 +15,15 @@
     "displayName": "Vacant",
     "nation": null,
     "termStart": null,
-    "termEnd": null,
     "termsServed": 0,
-    "portrait": null,
     "bio": "The office of the World President is currently vacant, pending the outcome of the next general election.",
-    "address": null,
-    "cabinet": []
+    "address": null
   },
   "election": {
     "status": "none",
     "nextElectionDay": null,
     "registrationOpen": false,
-    "candidates": [],
-    "lastWinner": null,
-    "lastElectionDate": null
-  },
-  "worldTreasury": {
-    "balance": 0,
-    "taxRate": 0,
-    "lastCollection": null,
-    "totalCollected": 0
-  },
-  "worldBank": {
-    "interestRate": 0,
-    "totalLoansIssued": 0,
-    "activeLoans": 0
+    "candidates": []
   },
   "nations": [
     {
@@ -52,14 +33,9 @@
       "emoji": "🏰",
       "capital": "New Bavaria",
       "leader": null,
-      "citizens": 0,
-      "treasury": 0,
-      "visaFee": 40,
       "role": "Finance & Central Administration",
-      "responsibility": "World Bank, Finance, Military",
       "governmentType": "Parliamentary Republic",
       "established": "2014",
-      "memberSince": "2014",
       "status": "active",
       "badge": "Founding Nation"
     },
@@ -70,14 +46,9 @@
       "emoji": "⚓",
       "capital": "Port City",
       "leader": null,
-      "citizens": 0,
-      "treasury": 0,
-      "visaFee": 50,
       "role": "Maritime Trade & Shipping",
-      "responsibility": "Trade Routes, Harbour Authority, Diplomacy",
       "governmentType": "City-State Council",
       "established": "2014",
-      "memberSince": "2014",
       "status": "active",
       "badge": "Member State"
     },
@@ -88,14 +59,9 @@
       "emoji": "🌿",
       "capital": "Kasukabey City",
       "leader": null,
-      "citizens": 0,
-      "treasury": 0,
-      "visaFee": 40,
       "role": "Agriculture & Food Security",
-      "responsibility": "Food Supply, Cultural Heritage, Education",
       "governmentType": "Democratic Republic",
       "established": "2014",
-      "memberSince": "2014",
       "status": "active",
       "badge": "Member State"
     },
@@ -106,14 +72,9 @@
       "emoji": "🏙",
       "capital": "Veromia Central",
       "leader": null,
-      "citizens": 0,
-      "treasury": 0,
-      "visaFee": 60,
       "role": "Trade, Commerce & Border Markets",
-      "responsibility": "Commerce, Diplomacy, Trade Regulation",
       "governmentType": "Trading Republic",
       "established": "2015",
-      "memberSince": "2015",
       "status": "active",
       "badge": "Member State"
     },
@@ -124,14 +85,9 @@
       "emoji": "🌊",
       "capital": "Aquriass Harbour",
       "leader": null,
-      "citizens": 0,
-      "treasury": 0,
-      "visaFee": 70,
       "role": "Water Resources & Naval Operations",
-      "responsibility": "Naval Defense, Water Resources, Coastal Security",
       "governmentType": "Maritime Republic",
       "established": "2016",
-      "memberSince": "2016",
       "status": "active",
       "badge": "Member State"
     },
@@ -142,24 +98,17 @@
       "emoji": "🌙",
       "capital": "Noctyr Prime",
       "leader": null,
-      "citizens": 0,
-      "treasury": 0,
-      "visaFee": 100,
       "role": "Strategic Security & National Intelligence",
-      "responsibility": "Intelligence, Strategic Operations, Night Defense",
       "governmentType": "Strategic Directorate",
       "established": "2024",
-      "memberSince": "2024",
       "status": "active",
       "badge": "Newest Nation"
     }
   ],
   "statistics": {
     "totalNations": 6,
-    "totalCitizens": 0,
     "yearsOfAdministration": 12,
     "constitutionAmendments": 0,
-    "presidentialTermsCompleted": 0,
-    "infrastructureProjects": 0
+    "presidentialTermsCompleted": 0
   }
 }

@@ -1,8 +1,6 @@
-// Binod World Government — Dynamic Data Loader
-// Loads world-state.json, publications.json, press releases, and live game data.
-// Live data polls a GitHub Gist every 9 seconds (updated by watch-world.ps1 + JCBP_WebSync addon).
-
-const LIVE_GIST_URL = 'https://gist.githubusercontent.com/Abi1206/1a9bf7c08a8f4246c8e3a9188608ad5b/raw/world-live.json';
+// Binod World Government — Government Data Loader
+// Loads world-state.json (nations, president, government) and publications.json (laws, white papers, etc.)
+// Update publications.json manually whenever new publications are issued in-game.
 
 const GOV = {
   worldState:  null,
@@ -47,67 +45,7 @@ const GOV = {
       }
     } catch (_) {}
 
-    // Fetch live game data, then render, then start polling every 9 seconds
-    await this._fetchLive();
     this.render();
-    setInterval(() => this._fetchLive().then(() => this.render()), 9000);
-  },
-
-  // Fetches live data from the Gist and merges it into worldState
-  async _fetchLive() {
-    if (!this.worldState) return;
-    try {
-      const r = await fetch(`${LIVE_GIST_URL}?_=${Date.now()}`);
-      if (!r.ok) return;
-      const live = await r.json();
-      if (!live?._live && !live?.ts) return; // safety check
-
-      // President
-      if (live.president?.name) {
-        this.worldState.president.name        = live.president.name;
-        this.worldState.president.displayName = live.president.name;
-        this.worldState.president.nation      = live.president.nation ?? null;
-        this.worldState.president.termsServed = live.president.terms  ?? 0;
-      } else {
-        this.worldState.president.displayName = 'Vacant';
-        this.worldState.president.name        = null;
-      }
-
-      // Election
-      if (live.election) {
-        this.worldState.election.status           = live.election.active ? 'active' : 'none';
-        this.worldState.election.registrationOpen = !!(live.election.registrationOpen);
-        this.worldState.election.candidates       = live.election.candidates ?? [];
-      }
-
-      // Nation leaders from game data (public info only)
-      if (this.worldState.nations) {
-        for (const nation of this.worldState.nations) {
-          if (live.leaders && live.leaders[nation.name] !== undefined) nation.leader = live.leaders[nation.name] ?? null;
-        }
-      }
-
-      if (live.ts) this.worldState._meta.lastUpdated = live.ts;
-
-      // Publications from game (laws, white papers, announcements, decrees)
-      if (live.publications) {
-        if (!this.publications) this.publications = { laws: [], whitePapers: [], pressReleases: [], notices: [], decrees: [], orders: [], announcements: [] };
-        const p = live.publications;
-        const map = fn => x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description ?? x.content ?? x.category ?? '' });
-        if (p.laws?.length)          this.publications.laws        = p.laws.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description || '' }));
-        if (p.whitePapers?.length)   this.publications.whitePapers = p.whitePapers.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.category || x.content?.substring(0, 120) || '' }));
-        if (p.announcements?.length) this.publications.notices     = p.announcements.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.content || '' }));
-        if (p.decrees?.length)       this.publications.decrees     = p.decrees.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description || '', active: x.active }));
-        if (p.constitution) {
-          this.publications.constitution = {
-            preamble:   p.constitution.preamble || '',
-            publishDay: p.constitution.publishDay || 0,
-            articles:   (p.constitution.articles || []).map(a => ({ title: a.title, body: a.content || '', date: a.day })),
-            amendments: (p.constitution.amendments || []).map(a => ({ title: a.title, body: a.content || '', date: a.day }))
-          };
-        }
-      }
-    } catch (_) {}
   },
 
   render() {
