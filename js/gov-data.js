@@ -96,8 +96,17 @@ const GOV = {
           ? Object.values(live.citizens).reduce((s, v) => s + (v || 0), 0)
           : this.worldState.statistics.totalCitizens;
       }
-      if (live.ts) {
-        this.worldState._meta.lastUpdated = live.ts;
+      if (live.ts) this.worldState._meta.lastUpdated = live.ts;
+
+      // Publications from game (laws, white papers, announcements, decrees)
+      if (live.publications) {
+        if (!this.publications) this.publications = { laws: [], whitePapers: [], pressReleases: [], notices: [], decrees: [], orders: [], announcements: [] };
+        const p = live.publications;
+        const map = fn => x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description ?? x.content ?? x.category ?? '' });
+        if (p.laws?.length)         this.publications.laws        = p.laws.map(map());
+        if (p.whitePapers?.length)  this.publications.whitePapers = p.whitePapers.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.category || x.content?.substring(0, 120) || '' }));
+        if (p.announcements?.length) this.publications.notices    = p.announcements.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.content || '' }));
+        if (p.decrees?.length)      this.publications.decrees     = p.decrees.map(x => ({ title: x.title, date: x.publishDay, department: x.author, description: x.description || '', active: x.active }));
       }
     } catch (_) {}
   },
@@ -118,8 +127,11 @@ const GOV = {
   // ─── Helpers ────────────────────────────────────────────────────
 
   formatDate(iso) {
-    if (!iso) return '—';
-    return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    if (!iso && iso !== 0) return '—';
+    if (typeof iso === 'number' || (typeof iso === 'string' && /^\d+$/.test(iso))) return `Day ${iso}`;
+    const d = new Date(iso);
+    if (isNaN(d)) return String(iso);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   },
 
   pubNo(type, idx) {
