@@ -1,0 +1,30 @@
+{
+  "_INSTRUCTIONS": "This file is a usage guide — do NOT add it to manifest.json",
+
+  "_HOW_TO_ADD_A_PRESS_RELEASE": [
+    "1. Drop your PDF file into this folder (e.g. PR-001.pdf)",
+    "2. Open manifest.json",
+    "3. Add one entry to the array (see example below)",
+    "4. Push to GitHub — the website auto-shows it on every page open"
+  ],
+
+  "_MANIFEST_ENTRY_FORMAT_PDF": {
+    "file": "PR-001.pdf",
+    "title": "Your Press Release Title Here",
+    "date": "2026-06-25",
+    "author": "Office of the President",
+    "ref": "PR-001",
+    "summary": "Optional: A one or two sentence summary of this press release."
+  },
+
+  "_MANIFEST_ENTRY_FORMAT_TEXT": {
+    "file": "PR-002.json",
+    "title": "Your Press Release Title Here",
+    "date": "2026-06-26",
+    "author": "Office of the President",
+    "ref": "PR-002",
+    "content": "Full text of your press release goes here.\n\nBlank lines create new paragraphs.\nSingle line breaks also work."
+  },
+
+  "_NOTE": "You can mix PDF and text press releases — both work. Newest date always shows first."
+}
