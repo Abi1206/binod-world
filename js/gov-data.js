@@ -80,22 +80,13 @@ const GOV = {
         this.worldState.election.candidates       = live.election.candidates ?? [];
       }
 
-      // Nation leaders, treasury, citizens from game data
+      // Nation leaders from game data (public info only)
       if (this.worldState.nations) {
         for (const nation of this.worldState.nations) {
-          if (live.leaders  && live.leaders[nation.name]  !== undefined) nation.leader   = live.leaders[nation.name]  ?? null;
-          if (live.treasury && live.treasury[nation.name] !== undefined) nation.treasury = live.treasury[nation.name] ?? 0;
-          if (live.citizens && live.citizens[nation.name] !== undefined) nation.citizens = live.citizens[nation.name] ?? 0;
+          if (live.leaders && live.leaders[nation.name] !== undefined) nation.leader = live.leaders[nation.name] ?? null;
         }
       }
 
-      // Online player count + last sync time
-      if (live.onlinePlayers !== undefined) {
-        this.worldState.statistics.onlinePlayers = live.onlinePlayers;
-        this.worldState.statistics.totalCitizens = live.citizens
-          ? Object.values(live.citizens).reduce((s, v) => s + (v || 0), 0)
-          : this.worldState.statistics.totalCitizens;
-      }
       if (live.ts) this.worldState._meta.lastUpdated = live.ts;
 
       // Publications from game (laws, white papers, announcements, decrees)
@@ -119,7 +110,6 @@ const GOV = {
     this.renderNations();
     this.renderPublicationsPage();
     this.renderConstitution();
-    this.renderTreasury();
     this.renderArchives();
     this.renderElectionBanner();
   },
@@ -200,12 +190,10 @@ const GOV = {
 
     const map = {
       'stat-nations':   ws.statistics.totalNations,
-      'stat-citizens':  ws.statistics.totalCitizens,
       'stat-years':     ws.statistics.yearsOfAdministration,
       'stat-laws':      pub ? pub.laws.length : 0,
       'stat-wps':       pub ? pub.whitePapers.length : 0,
       'stat-prs':       (pub ? pub.pressReleases.length : 0) + this.pressFolder.length,
-      'stat-online':    ws.statistics.onlinePlayers ?? 0,
     };
     Object.entries(map).forEach(([id, val]) => {
       const el = document.getElementById(id);
@@ -253,17 +241,32 @@ const GOV = {
 
   renderPresident() {
     const el = document.getElementById('president-data');
+    const nameEl = document.getElementById('president-name');
     if (!el || !this.worldState) return;
     const p = this.worldState.president;
+    const isVacant = !p.name;
+
+    if (nameEl) nameEl.textContent = isVacant ? 'Office Vacant' : (p.displayName || p.name);
+
+    if (isVacant) {
+      el.innerHTML = `
+        <div class="president-vacant">
+          <div class="president-vacant-badge">VACANT</div>
+          <p class="text-muted">The Office of the World President is currently vacant, pending the outcome of the next general election.</p>
+        </div>`;
+      return;
+    }
 
     el.innerHTML = `
       <div class="president-meta-table">
-        <div class="pmeta-row"><span>Name</span><strong>${p.displayName || p.name || 'Vacant'}</strong></div>
+        <div class="pmeta-row"><span>Name</span><strong>${p.displayName || p.name}</strong></div>
         <div class="pmeta-row"><span>Nation</span><strong>${p.nation || '—'}</strong></div>
+        <div class="pmeta-row"><span>Office</span><strong>World President</strong></div>
         <div class="pmeta-row"><span>Term Since</span><strong>${this.formatDate(p.termStart)}</strong></div>
-        <div class="pmeta-row"><span>Terms Served</span><strong>${p.termsServed || 0}</strong></div>
+        <div class="pmeta-row"><span>Terms Served</span><strong>${p.termsServed || 1}</strong></div>
+        <div class="pmeta-row"><span>Status</span><strong style="color:var(--green);">● In Office</strong></div>
       </div>
-      ${p.bio    ? `<p class="president-bio">${p.bio}</p>` : ''}
+      ${p.bio     ? `<p class="president-bio">${p.bio}</p>`         : ''}
       ${p.address ? `<blockquote class="president-address">${p.address}</blockquote>` : ''}
     `;
   },
@@ -282,11 +285,10 @@ const GOV = {
           <div class="nation-role">${n.role}</div>
           <ul class="nation-facts">
             <li><span>Capital</span><strong>${n.capital}</strong></li>
-            <li><span>Head of State</span><strong>${n.leader || 'Vacant'}</strong></li>
-            <li><span>Citizens</span><strong>${n.citizens}</strong></li>
-            <li><span>Visa Fee</span><strong>${n.visaFee} em</strong></li>
+            <li><span>Leader</span><strong>${n.leader || 'Vacant'}</strong></li>
             <li><span>Est.</span><strong>${n.established}</strong></li>
             <li><span>Gov. Type</span><strong>${n.governmentType}</strong></li>
+            <li><span>Status</span><strong>${n.status === 'active' ? 'Active Member' : 'Inactive'}</strong></li>
           </ul>
         </div>
       </div>`).join('');
@@ -370,32 +372,6 @@ const GOV = {
     el.innerHTML = html;
   },
 
-  renderTreasury() {
-    const el = document.getElementById('treasury-data');
-    if (!el || !this.worldState) return;
-    const t = this.worldState.worldTreasury;
-    const n = this.worldState.nations;
-
-    el.innerHTML = `
-      <div class="treasury-summary">
-        <div class="treasury-stat"><span>World Treasury Reserve</span><strong>${t.balance.toLocaleString()} em</strong></div>
-        <div class="treasury-stat"><span>Current Tax Rate</span><strong>${t.taxRate} em/cycle</strong></div>
-        <div class="treasury-stat"><span>Total Collected</span><strong>${t.totalCollected.toLocaleString()} em</strong></div>
-      </div>
-      <h3 class="treasury-section-title">Member Nation Treasuries</h3>
-      <table class="gov-table">
-        <thead><tr><th>Nation</th><th>Leader</th><th>Treasury Balance</th><th>Citizens</th><th>Status</th></tr></thead>
-        <tbody>
-          ${n.map(nation => `<tr>
-            <td><strong>${nation.name}</strong></td>
-            <td>${nation.leader || '—'}</td>
-            <td>${nation.treasury.toLocaleString()} em</td>
-            <td>${nation.citizens}</td>
-            <td style="color:var(--green);font-weight:600;">${nation.status === 'active' ? '● Active' : '○ Inactive'}</td>
-          </tr>`).join('')}
-        </tbody>
-      </table>`;
-  },
 
   renderArchives() {
     const el = document.getElementById('archives-data');
