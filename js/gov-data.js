@@ -80,18 +80,21 @@ const GOV = {
         this.worldState.election.candidates       = live.election.candidates ?? [];
       }
 
-      // Nation leaders from colony ownership
-      if (live.leaders && this.worldState.nations) {
+      // Nation leaders, treasury, citizens from game data
+      if (this.worldState.nations) {
         for (const nation of this.worldState.nations) {
-          if (live.leaders[nation.name] !== undefined) {
-            nation.leader = live.leaders[nation.name] || null;
-          }
+          if (live.leaders  && live.leaders[nation.name]  !== undefined) nation.leader   = live.leaders[nation.name]  ?? null;
+          if (live.treasury && live.treasury[nation.name] !== undefined) nation.treasury = live.treasury[nation.name] ?? 0;
+          if (live.citizens && live.citizens[nation.name] !== undefined) nation.citizens = live.citizens[nation.name] ?? 0;
         }
       }
 
       // Online player count + last sync time
       if (live.onlinePlayers !== undefined) {
         this.worldState.statistics.onlinePlayers = live.onlinePlayers;
+        this.worldState.statistics.totalCitizens = live.citizens
+          ? Object.values(live.citizens).reduce((s, v) => s + (v || 0), 0)
+          : this.worldState.statistics.totalCitizens;
       }
       if (live.ts) {
         this.worldState._meta.lastUpdated = live.ts;
