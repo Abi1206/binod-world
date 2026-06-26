@@ -1,20 +1,365 @@
 {
-  "_meta": {
-    "lastUpdated": "2026-06-25T00:00:00Z",
-    "note": "Auto-exported from Binod World. Contains all official government publications."
-  },
-  "laws": [],
-  "whitePapers": [],
-  "pressReleases": [],
-  "notices": [],
-  "decrees": [],
-  "orders": [],
-  "announcements": [],
-  "constitution": {
-    "preamble": "",
-    "version": "1.0",
-    "lastAmended": null,
-    "articles": [],
-    "amendments": []
-  }
+    "_meta":  {
+                  "exportedAtDay":  233,
+                  "note":  "Auto-exported from Binod World Government ID Panel"
+              },
+    "publications":  [
+                         {
+                             "id":  "LAW-001",
+                             "type":  "law",
+                             "title":  "National Infrastructure Act",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  194,
+                             "status":  "published",
+                             "content":  "All nations are encouraged to maintain roads, railways, and public stations. Government grants may b",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-002",
+                             "type":  "law",
+                             "title":  "Emergency Reserve Act",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  194,
+                             "status":  "published",
+                             "content":  "Every nation shall maintain food and resource reserves to ensure stability during emergencies and sh",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-001",
+                             "type":  "whitepaper",
+                             "title":  "World Reserve Status Report",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  189,
+                             "status":  "published",
+                             "content":  "Current World Reserve stands at 17,962 emeralds.The reserve remains stable and will be preserved fo",
+                             "category":  "Announcement",
+                             "tags":  [
+                                          "whitepaper",
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-002",
+                             "type":  "whitepaper",
+                             "title":  "Gov tressure",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  199,
+                             "status":  "published",
+                             "content":  "7097",
+                             "category":  "Other",
+                             "tags":  [
+                                          "whitepaper",
+                                          "other"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-003",
+                             "type":  "whitepaper",
+                             "title":  "Binod–Port Mafia Strategic Bridge Development Initiative",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  229,
+                             "status":  "published",
+                             "content":  "The Binod World Government has approved the development of the Binod–bavaria MAFIA Strategic Bridge",
+                             "category":  "Development",
+                             "tags":  [
+                                          "whitepaper",
+                                          "development"
+                                      ]
+                         },
+                         {
+                             "id":  "CON-001",
+                             "type":  "constitution",
+                             "title":  "World Constitution — Preamble",
+                             "publishedBy":  "World Government",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  194,
+                             "status":  "published",
+                             "content":  "We, the nations and citizens of Binod, establish this Constitution to preserve peace, prosperity, co",
+                             "tags":  [
+                                          "constitution"
+                                      ]
+                         },
+                         {
+                             "id":  "ART-001",
+                             "type":  "article",
+                             "title":  "Article I — Sovereignty of Nations",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  194,
+                             "status":  "published",
+                             "content":  "Each nation retains the right to govern its own territory, economy, and internal affairs.",
+                             "tags":  [
+                                          "constitution",
+                                          "article"
+                                      ]
+                         },
+                         {
+                             "id":  "AMEND-001",
+                             "type":  "amendment",
+                             "title":  "Amendment I",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  194,
+                             "status":  "published",
+                             "content":  "No nation may intentionally destroy another nation\u0027s public infrastructure.",
+                             "tags":  [
+                                          "constitution",
+                                          "amendment"
+                                      ]
+                         },
+                         {
+                             "id":  "AMEND-002",
+                             "type":  "amendment",
+                             "title":  "Amendment II",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  194,
+                             "status":  "published",
+                             "content":  "Government funds shall be used only for public benefit and development.",
+                             "tags":  [
+                                          "constitution",
+                                          "amendment"
+                                      ]
+                         },
+                         {
+                             "id":  "AMEND-003",
+                             "type":  "amendment",
+                             "title":  "Amendment No. III",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  222,
+                             "status":  "published",
+                             "content":  "Under Bavaria’s leadership, a standardized policy mandates designated storage chests for hyper rail",
+                             "tags":  [
+                                          "constitution",
+                                          "amendment"
+                                      ]
+                         },
+                         {
+                             "id":  "ANN-001",
+                             "type":  "announcement",
+                             "title":  "Public Notice",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  186,
+                             "status":  "published",
+                             "content":  "அன்பு பினோட் மக்களே, நான் பவேரியாவின் தலைவர் ரோலக்ஸ்5834 பேசுகிறேன்.நான் பதவிக்காக வரவில்லை; பினோட",
+                             "tags":  [
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "ANN-002",
+                             "type":  "announcement",
+                             "title":  "Public Notice",
+                             "publishedBy":  "MrAdolfo6067",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  208,
+                             "status":  "published",
+                             "content":  "All accept the withdrawal, For welfare Department",
+                             "tags":  [
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "ANN-003",
+                             "type":  "announcement",
+                             "title":  "Development Plan",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  220,
+                             "status":  "published",
+                             "content":  "SUSSY NEED TO PAY YOUR 48=79 TO GOV WITHIN 3 DAYS",
+                             "tags":  [
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "ANN-004",
+                             "type":  "announcement",
+                             "title":  "Development Plan",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  229,
+                             "status":  "published",
+                             "content":  "The World Metro Plan has been approved as the official national transportation project of the Binod.",
+                             "tags":  [
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-001",
+                             "type":  "election",
+                             "title":  "Election #1 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  185,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  3,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-002",
+                             "type":  "election",
+                             "title":  "Election #2 — MrAdolfo6067 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Kasukabey",
+                             "day":  201,
+                             "status":  "elected",
+                             "leader":  "MrAdolfo6067",
+                             "totalVotes":  3,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-003",
+                             "type":  "election",
+                             "title":  "Election #3 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  220,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  5,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "PRES-CURRENT",
+                             "type":  "election",
+                             "title":  "ROLEX5834 — World President",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  220,
+                             "status":  "active",
+                             "leader":  "ROLEX5834",
+                             "termNumber":  1,
+                             "tags":  [
+                                          "election",
+                                          "presidential",
+                                          "active"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-BAVARIA",
+                             "type":  "leader_update",
+                             "title":  "Bavaria — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "-261993005055",
+                             "country":  "Bavaria",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "-261993005055",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-PORT_MAFIA",
+                             "type":  "leader_update",
+                             "title":  "Port Mafia — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "-4294967205",
+                             "country":  "Port Mafia",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "-4294967205",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-AQURIASS",
+                             "type":  "leader_update",
+                             "title":  "Aquriass — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "-768799144074",
+                             "country":  "Aquriass",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "-768799144074",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-KASUKA_BAY",
+                             "type":  "leader_update",
+                             "title":  "Kasuka bay — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "-8589934579",
+                             "country":  "Kasuka bay",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "-8589934579",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-VEROMIA",
+                             "type":  "leader_update",
+                             "title":  "Veromia — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "-12884901463",
+                             "country":  "Veromia",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "-12884901463",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-NOCTYRIA",
+                             "type":  "leader_update",
+                             "title":  "Noctyria — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "-167503724418",
+                             "country":  "Noctyria",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "-167503724418",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         }
+                     ]
 }
