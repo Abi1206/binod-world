@@ -1,6 +1,6 @@
 {
     "_meta":  {
-                  "exportedAtDay":  233,
+                  "exportedAtDay":  235,
                   "note":  "Auto-exported from Binod World Government ID Panel"
               },
     "publications":  [
@@ -29,6 +29,21 @@
                              "day":  194,
                              "status":  "published",
                              "content":  "Every nation shall maintain food and resource reserves to ensure stability during emergencies and sh",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-003",
+                             "type":  "law",
+                             "title":  "Inter-Nation Cooperation Act",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  235,
+                             "status":  "published",
+                             "content":  "Establishes a framework for cooperation between Member Nations on infrastructure, transportation etc",
                              "tags":  [
                                           "law",
                                           "government"
@@ -261,13 +276,29 @@
                                       ]
                          },
                          {
+                             "id":  "ELECT-004",
+                             "type":  "election",
+                             "title":  "Election #4 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  235,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  1,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
                              "id":  "PRES-CURRENT",
                              "type":  "election",
                              "title":  "ROLEX5834 — World President",
                              "publishedBy":  "Binod World Government",
                              "office":  "President",
                              "country":  "Bavaria",
-                             "day":  220,
+                             "day":  235,
                              "status":  "active",
                              "leader":  "ROLEX5834",
                              "termNumber":  1,
@@ -282,11 +313,11 @@
                              "type":  "leader_update",
                              "title":  "Bavaria — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "-261993005055",
+                             "office":  "ROLEX5834",
                              "country":  "Bavaria",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "-261993005055",
+                             "leader":  "ROLEX5834",
                              "tags":  [
                                           "leader"
                                       ]
@@ -296,11 +327,11 @@
                              "type":  "leader_update",
                              "title":  "Port Mafia — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "-4294967205",
+                             "office":  "Franky boy3746",
                              "country":  "Port Mafia",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "-4294967205",
+                             "leader":  "Franky boy3746",
                              "tags":  [
                                           "leader"
                                       ]
@@ -310,11 +341,11 @@
                              "type":  "leader_update",
                              "title":  "Aquriass — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "-768799144074",
+                             "office":  "Cubro2284",
                              "country":  "Aquriass",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "-768799144074",
+                             "leader":  "Cubro2284",
                              "tags":  [
                                           "leader"
                                       ]
@@ -324,11 +355,11 @@
                              "type":  "leader_update",
                              "title":  "Kasuka bay — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "-8589934579",
+                             "office":  "MrAdolfo6067",
                              "country":  "Kasuka bay",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "-8589934579",
+                             "leader":  "MrAdolfo6067",
                              "tags":  [
                                           "leader"
                                       ]
@@ -338,11 +369,11 @@
                              "type":  "leader_update",
                              "title":  "Veromia — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "-12884901463",
+                             "office":  "Sussy baka9975",
                              "country":  "Veromia",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "-12884901463",
+                             "leader":  "Sussy baka9975",
                              "tags":  [
                                           "leader"
                                       ]
@@ -352,11 +383,11 @@
                              "type":  "leader_update",
                              "title":  "Noctyria — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "-167503724418",
+                             "office":  "pewberttyhitter",
                              "country":  "Noctyria",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "-167503724418",
+                             "leader":  "pewberttyhitter",
                              "tags":  [
                                           "leader"
                                       ]
