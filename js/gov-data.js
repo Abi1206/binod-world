@@ -160,7 +160,17 @@ const GOV = {
     };
     Object.entries(map).forEach(([id, val]) => {
       const el = document.getElementById(id);
-      if (el) el.setAttribute('data-count', val);
+      if (!el) return;
+      el.setAttribute('data-count', val);
+      // Re-animate: the IntersectionObserver fires before data loads, so we run it ourselves
+      if (val === 0) { el.textContent = '0'; return; }
+      let current = 0;
+      const step = Math.max(1, Math.ceil(val / 40));
+      const timer = setInterval(() => {
+        current = Math.min(current + step, val);
+        el.textContent = current.toLocaleString();
+        if (current >= val) clearInterval(timer);
+      }, 28);
     });
   },
 
