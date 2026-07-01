@@ -1,11 +1,14 @@
 // BIASR — Unified Binod Calendar (UBC) Engine
-// Implements UBC Standard v1.0.1 (Gregorian <-> UBC conversion, Section VII, with the
-// v1.0.1 erratum's normative Julian Date convention) plus the Active Temporal Flow (ATF)
-// gameplay-synchronization policy for the live observatory clock.
+// Implements UBC Standard v2.0.0: the civil calendar is synchronized directly to
+// the Minecraft world and advances ONLY during the official Active Temporal Flow
+// (ATF) window (20:00-03:00 IST). One complete Minecraft day (20 real-world
+// minutes of ATF-active time) equals one UBC civil day. Outside the window, the
+// entire calendar -- date AND displayed time -- freezes exactly where it stopped,
+// and resumes automatically at 20:00 IST with no manual reset.
 //
-// Per the standard: the UBC Date (year/month/day) is a pure, continuous function of real
-// elapsed time -- it is NEVER gated by ATF. ATF only controls the "Live UBC Time" (hh:mm:ss)
-// readout on the dashboard, which freezes outside the official gameplay window.
+// This supersedes UBC v1.0.1's continuous, TSI-based Earth-time model: the UBC
+// date is no longer a function of continuous elapsed Earth time. It is a function
+// of accumulated ATF-active Minecraft days since the Founding Epoch.
 // Vanilla JS, no dependencies. Safe for GitHub Pages (static hosting only).
 
 (function (global) {
@@ -16,21 +19,21 @@
   const HOUR = 60 * MINUTE;
   const DAY = 24 * HOUR;
 
-  // ── UBC Standard v1.0.1 constants (Section III, IV, XI) ───────────────────
-
-  // Temporal Synchronization Index -- a fixed physical constant (ratio of the mean
-  // terrestrial day to the mean Binodian civil day), NOT a live/computed ratio.
-  const TSI = 86400 / 86736;
+  // ── UBC Standard v2.0.0 constants ──────────────────────────────────────────
 
   // India Standard Time: fixed +5:30 offset, no DST -- modeled as a constant.
   const IST_OFFSET_MS = 5.5 * HOUR;
 
-  // Founding Epoch (FE): Day 1, Month 1 (Ardhan), Year 1 = 23 April 2021, 06:00:00 UTC.
-  const EPOCH_UTC_MS = Date.UTC(2021, 3, 23, 6, 0, 0);
+  // Founding Epoch (FE): Day 1, Month 1 (Ardhan), Year 1 = 23 April 2021, 20:00:00 IST
+  // (14:30:00 UTC). This is also the moment the first Active Temporal Flow window opens.
+  const EPOCH_UTC_MS = Date.UTC(2021, 3, 23, 14, 30, 0);
 
-  // Official ATF gameplay window: 20:00 IST -> 03:00 IST next day.
+  // Official ATF gameplay window: 20:00 IST -> 03:00 IST next day (7 hours).
   const WINDOW_START_HOUR = 20;
   const WINDOW_LENGTH_MS = 7 * HOUR;
+
+  // One Minecraft day = 20 real-world minutes = one UBC civil day.
+  const CIVIL_DAY_REAL_MS = 20 * MINUTE;
 
   const MONTHS = [
     ['Ardhan', 'ARD'], ['Ferith', 'FER'], ['Selvyn', 'SEL'], ['Kython', 'KYT'],
@@ -42,16 +45,12 @@
     ['Woodsday', 'Woo'], ['Restday', 'Res'], ['Voidday', 'Voi']
   ];
 
-  const STORAGE_KEY = 'biasr_ubc_atf_state_v2';
+  const STORAGE_KEY = 'biasr_ubc_atf_state_v3';
 
-  // ── Section V: Leap Correction Scheme ───────────────────────────────────────
+  // ── Leap Correction Scheme (unchanged from v1.0.1) ─────────────────────────
   //
-  // Formal Leap Test (Eq. 5): IsLeap(y) = true if y%400=0; false if y%100=0;
+  // Formal Leap Test: IsLeap(y) = true if y%400=0; false if y%100=0;
   // else true if Phi(y) >= 1, where Phi(y) = frac((y-1) * 1.2563).
-  // Note: Phi(y) is a fractional part and is therefore always in [0,1) by
-  // construction, so the "Phi(y) >= 1" branch is mathematically unreachable --
-  // this is the formally ratified test (unchanged by the v1.0.1 erratum, which
-  // corrected only the worked examples' Julian Date arithmetic, not this rule).
   // In practice this makes every year common (364 days) except multiples of 400.
   function isLeapYear(y) {
     if (y % 400 === 0) return true;
@@ -63,38 +62,7 @@
   function daysInYear(y) { return isLeapYear(y) ? 365 : 364; }
   function daysInMonth(y, m) { return (m === 7 && isLeapYear(y)) ? 29 : 28; }
 
-  // ── Section VII: Conversion Formulae (Gregorian -> UBC) ────────────────────
-  //
-  // The standard's worked examples evaluate civil dates at 00:00 UTC, but the live
-  // dashboard instead uses the full-precision "now" (continuous real elapsed time),
-  // which reduces to the exact same result at those instants and updates smoothly
-  // between them -- there is no separate "date" vs "clock" Julian Date needed here.
-  function computeUBCDate(nowUtcMs) {
-    const deltaEarthDays = (nowUtcMs - EPOCH_UTC_MS) / DAY;
-    const deltaBinodDays = deltaEarthDays * TSI;
-    const N = Math.floor(deltaBinodDays) + 1; // BJDN, 1-indexed (Eq. "N")
-
-    let y = 1, r = N - 1;
-    while (r >= daysInYear(y)) { r -= daysInYear(y); y++; }
-    let m = 1;
-    while (r >= daysInMonth(y, m)) { r -= daysInMonth(y, m); m++; }
-    const d = r + 1;
-
-    const leap = isLeapYear(y);
-    const isSynchronyDay = (m === 7 && leap && d === 29);
-    const weekdayIndex = isSynchronyDay ? null : (d - 1) % 7;
-
-    return {
-      N, year: y, month: m,
-      monthName: MONTHS[m - 1][0], monthAbbr: MONTHS[m - 1][1],
-      day: d, isLeap: leap, isSynchronyDay,
-      weekdayName: isSynchronyDay ? 'Synchrony Day (Synchara)' : WEEKDAYS[weekdayIndex][0],
-      fullDate: `${String(d).padStart(2, '0')}-${MONTHS[m - 1][1]}-${y}`,
-      isoDate: `UBC${String(y).padStart(4, '0')}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`
-    };
-  }
-
-  // ── Active Temporal Flow (ATF): gates only the Live UBC Time readout ───────
+  // ── Active Temporal Flow (ATF): gates the entire calendar ──────────────────
 
   function toISTShifted(utcMs) { return utcMs + IST_OFFSET_MS; }
 
@@ -113,7 +81,8 @@
   }
 
   // Sums all ATF-active milliseconds between the Founding Epoch and `nowUtcMs`.
-  // This banked time drives only the displayed clock (hh:mm:ss), never the date.
+  // This is the sole driver of the UBC calendar: date, month, year, and the
+  // displayed in-day clock are all pure functions of this accumulated value.
   function computeBankedMs(nowUtcMs) {
     const epochShifted = toISTShifted(EPOCH_UTC_MS);
     const nowShifted = toISTShifted(nowUtcMs);
@@ -132,6 +101,51 @@
     return banked;
   }
 
+  // ── UBC Date + in-day clock, derived from accumulated ATF-active time ─────
+  //
+  // Every 20 real-world minutes of ATF-active time advances the UBC date by
+  // exactly one civil day (one Minecraft day). Every 50 real-world seconds of
+  // that same active time advances the displayed UBC time by one in-game hour
+  // (1200s / 24h = 50s/h) -- so the in-day clock completes a full 24-hour cycle
+  // once per civil day, freezing in place whenever ATF is inactive.
+  function ubcFromBankedMs(bankedMs) {
+    const totalDaysFloat = bankedMs / CIVIL_DAY_REAL_MS;
+    const N = Math.floor(totalDaysFloat) + 1; // BJDN, 1-indexed
+    const fractionOfDay = totalDaysFloat - Math.floor(totalDaysFloat);
+
+    let y = 1, r = N - 1;
+    while (r >= daysInYear(y)) { r -= daysInYear(y); y++; }
+    let m = 1;
+    while (r >= daysInMonth(y, m)) { r -= daysInMonth(y, m); m++; }
+    const d = r + 1;
+
+    const leap = isLeapYear(y);
+    const isSynchronyDay = (m === 7 && leap && d === 29);
+    const weekdayIndex = isSynchronyDay ? null : (d - 1) % 7;
+
+    const hoursFloat = fractionOfDay * 24;
+    const hh = Math.floor(hoursFloat);
+    const mmFloat = (hoursFloat - hh) * 60;
+    const mm = Math.floor(mmFloat);
+    const ss = Math.floor((mmFloat - mm) * 60);
+
+    return {
+      N, year: y, month: m,
+      monthName: MONTHS[m - 1][0], monthAbbr: MONTHS[m - 1][1],
+      day: d, isLeap: leap, isSynchronyDay,
+      weekdayName: isSynchronyDay ? 'Synchrony Day (Synchara)' : WEEKDAYS[weekdayIndex][0],
+      fullDate: `${String(d).padStart(2, '0')}-${MONTHS[m - 1][1]}-${y}`,
+      isoDate: `UBC${String(y).padStart(4, '0')}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`,
+      clock: { hh, mm, ss },
+      fractionOfDay,
+      secondsUntilNextDay: Math.ceil((1 - fractionOfDay) * (CIVIL_DAY_REAL_MS / 1000))
+    };
+  }
+
+  function computeUBCDate(nowUtcMs) {
+    return ubcFromBankedMs(computeBankedMs(nowUtcMs));
+  }
+
   function pad2(n) { return String(n).padStart(2, '0'); }
 
   function formatISTClock(nowUtcMs) {
@@ -143,7 +157,11 @@
     };
   }
 
-  // ── Persistence (localStorage) — diagnostics for the ATF clock only ───────
+  // ── Persistence (localStorage) — diagnostics only ─────────────────────────
+  //
+  // The UBC state above is always fully recomputed from the Founding Epoch, so
+  // it never depends on this stored record for correctness; the record is kept
+  // only to detect banking irregularities (see `drift` in computeState()).
 
   function loadStoredState() {
     try {
@@ -160,26 +178,19 @@
   // ── Public engine ───────────────────────────────────────────────────────────
 
   const CalendarEngine = {
-    MONTHS, WEEKDAYS, TSI,
+    MONTHS, WEEKDAYS,
+    CIVIL_DAY_REAL_MS,
     WINDOW_LABEL: '20:00 - 03:00 IST',
-    EPOCH_LABEL: '01-ARD-1 (UBC0001-01-01) — 23 April 2021, 06:00:00 UTC',
+    EPOCH_LABEL: '01-ARD-1 (UBC0001-01-01) — 23 April 2021, 20:00:00 IST (14:30:00 UTC)',
     isLeapYear, daysInMonth, daysInYear, computeUBCDate, computeBankedMs,
 
     computeState() {
       const nowUtcMs = Date.now();
-      const ubc = computeUBCDate(nowUtcMs);
-      const ist = formatISTClock(nowUtcMs);
-
-      // ATF: gates only the Live UBC Time clock, never the date above.
       const bankedMs = computeBankedMs(nowUtcMs);
+      const ubc = ubcFromBankedMs(bankedMs);
+      const ist = formatISTClock(nowUtcMs);
       const active = isActiveAt(toISTShifted(nowUtcMs));
       const bankedSeconds = bankedMs / 1000;
-      const secOfDay = Math.floor(bankedSeconds) % 86400;
-      const clock = {
-        hh: Math.floor(secOfDay / 3600),
-        mm: Math.floor((secOfDay % 3600) / 60),
-        ss: secOfDay % 60
-      };
 
       const prev = loadStoredState();
       let drift = 0;
@@ -191,7 +202,7 @@
 
       saveState({ bankedSeconds, lastTickMs: nowUtcMs, active, lastCalibration });
 
-      return { nowUtcMs, ubc, ist, active, clock, drift, lastCalibration, tsi: TSI };
+      return { nowUtcMs, ubc, ist, active, clock: ubc.clock, drift, lastCalibration };
     },
 
     init(onTick) {

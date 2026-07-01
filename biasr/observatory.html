@@ -126,7 +126,7 @@
       </div>
       <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px,1fr));">
         <div><div class="label">Clock Drift</div><div class="value mono" style="font-size:1.1rem;" id="mon-drift">—</div></div>
-        <div><div class="label">TSI</div><div class="value mono" style="font-size:1.1rem;" id="mon-tsi">—</div></div>
+        <div><div class="label">Civil Day (BJDN)</div><div class="value mono" style="font-size:1.1rem;" id="mon-day">—</div></div>
         <div><div class="label">Gameplay Window</div><div class="value" style="font-size:1rem;" id="mon-window">—</div></div>
         <div><div class="label">Last Calibration</div><div class="value mono" style="font-size:.95rem;" id="mon-calib">—</div></div>
       </div>
@@ -153,7 +153,7 @@
       ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE TEMPORAL FLOW</span>'
       : '<span class="status-pill paused"><span class="status-dot"></span>TEMPORAL FLOW PAUSED</span>';
     el('mon-drift').textContent = `${state.drift.toFixed(3)}s`;
-    el('mon-tsi').textContent = state.tsi.toFixed(6);
+    el('mon-day').textContent = state.ubc.N.toLocaleString();
     el('mon-window').textContent = CalendarEngine.WINDOW_LABEL;
     el('mon-calib').textContent = new Date(state.lastCalibration).toLocaleString();
   });

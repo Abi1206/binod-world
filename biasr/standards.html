@@ -51,12 +51,15 @@
     <details class="standard-item" open>
       <summary><span><span class="std-id">BIASR-STD-001</span>Unified Binod Calendar</span><span class="std-status">Published</span></summary>
       <div class="standard-body">
-        <p><strong>Scope:</strong> Defines the Founding Epoch (23 April 2021, 06:00 UTC), the
-        13-month/28-day calendar structure with three-tier leap correction, the Temporal
-        Synchronization Index (TSI = 86,400/86,736), and the bidirectional Gregorian&harr;UBC
-        conversion algorithm. The Active Temporal Flow policy governing the live observatory
-        clock is a separate BIASR operational policy layered on top of this standard.</p>
-        <p><strong>Effective:</strong> 2026-06-01 &middot; <strong>Version:</strong> 1.0.1</p>
+        <p><strong>Scope:</strong> Defines the Founding Epoch (23 April 2021, 20:00 IST), the
+        13-month/28-day calendar structure with three-tier leap correction, and Active Temporal
+        Flow (ATF)-gated day advancement: one Minecraft day (20 real-world minutes of ATF-active
+        time) equals one UBC civil day. The calendar advances only during the official 20:00–03:00
+        IST window and freezes completely outside it, resuming automatically the next evening.
+        This supersedes the v1.0.1 model, in which the civil date advanced continuously via a
+        fixed Temporal Synchronization Index independent of Active Temporal Flow.</p>
+        <p><strong>Effective:</strong> 2026-07-02 &middot; <strong>Version:</strong> 2.0.0
+        (supersedes 1.0.1)</p>
         <p><a href="calendar.html">View live reference implementation →</a></p>
       </div>
     </details>
@@ -82,9 +85,12 @@
     <details class="standard-item">
       <summary><span><span class="std-id">BIASR-STD-004</span>Temporal Measurement Standard</span><span class="std-status">Published</span></summary>
       <div class="standard-body">
-        <p><strong>Scope:</strong> Defines the Temporal Synchronization Index (TSI) and the
-        methodology for measuring drift between Active Temporal Flow and real elapsed time.</p>
-        <p><strong>Effective:</strong> 2026-06-01 &middot; <strong>Version:</strong> 1.0.0</p>
+        <p><strong>Scope:</strong> Defines the methodology for measuring clock drift between
+        banked Active Temporal Flow time and real elapsed time. Formerly defined the Temporal
+        Synchronization Index (TSI); TSI is retired under BIASR-STD-001 v2.0.0, which derives the
+        civil calendar directly from accumulated ATF-active Minecraft days rather than a
+        continuous Earth-time ratio.</p>
+        <p><strong>Effective:</strong> 2026-06-01 &middot; <strong>Version:</strong> 1.1.0</p>
       </div>
     </details>
   </div>

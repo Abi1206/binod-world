@@ -6,13 +6,13 @@
     "authors": ["Chief Scientific Committee on Temporal Standards (CSCTS)"],
     "institution": "Republic of Binod — Department of Chronometry and Astronomical Science",
     "division": "Temporal Physics Division",
-    "abstract": "This document constitutes the official specification of the Unified Binod Calendar (UBC), the civil timekeeping standard of the Republic of Binod, ratified by the Chief Scientific Committee on Temporal Standards (CSCTS) following five years of peer-reviewed research (UBC 0-5). The calendar is anchored to the Founding Epoch of 23 April 2021 CE, the verified date of the Binodian world's first sunrise as reconstructed through archaeological and astronomical evidence. The UBC is computed from the Temporal Synchronization Index (TSI), a dimensionless coupling constant derived from the ratio of Binodian mean solar day to the SI-anchored terrestrial second. The specification defines epoch, year structure, month nomenclature, week structure, date notation, leap corrections, and bidirectional conversion formulae.",
-    "date": "2026-06-04",
+    "abstract": "This document constitutes the official specification of the Unified Binod Calendar (UBC), the civil timekeeping standard of the Republic of Binod, ratified by the Chief Scientific Committee on Temporal Standards (CSCTS). The calendar is anchored to the Founding Epoch of 23 April 2021 CE, 20:00 IST, the moment the Binodian world's first Active Temporal Flow (ATF) session began. As of Version 2.0.0, the UBC civil date is synchronized directly to the Minecraft world: one complete Minecraft day (20 real-world minutes) equals one UBC civil day, and the calendar advances only during the Government's official Active Temporal Flow window, 20:00-03:00 India Standard Time, freezing completely outside it and resuming automatically each evening. This supersedes the Version 1.0.1 model, in which the civil date was a continuous function of real elapsed Earth time via a fixed Temporal Synchronization Index (TSI), now retired. The specification defines epoch, year structure, month nomenclature, week structure, date notation, leap corrections, and the accumulated-Minecraft-day conversion procedure.",
+    "date": "2026-07-02",
     "volume": 1,
     "issue": 1,
     "identifier": "UBC-STD-2026-001",
     "issn": "UBC-2026-001",
-    "citation": "Chief Scientific Committee on Temporal Standards (CSCTS). (Published 04-KYT-5, rev. 01-SEL-6). Unified Binod Calendar (UBC): A Peer-Reviewed Civil Timekeeping Standard for the Binod World Government. Binod Journal of Astronomical & Civil Science, 1(1). Document ID: UBC-STD-2026-001.",
-    "tags": ["calendar", "temporal-physics", "standards", "UBC"]
+    "citation": "Chief Scientific Committee on Temporal Standards (CSCTS). (Published 04-KYT-5, rev. 01-SEL-6, redesignated 01-MOR-110). Unified Binod Calendar (UBC): A Peer-Reviewed Civil Timekeeping Standard for the Binod World Government (v2.0.0). Binod Journal of Astronomical & Civil Science, 1(1). Document ID: UBC-STD-2026-001.",
+    "tags": ["calendar", "active-temporal-flow", "standards", "UBC", "v2.0.0"]
   }
 ]
