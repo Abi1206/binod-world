@@ -382,3 +382,106 @@ section { padding: 64px 0; }
 .project-status.active { background: rgba(52,211,153,.14); color: var(--status-active); }
 .project-status.planning { background: rgba(212,175,55,.14); color: var(--gold); }
 .project-status.completed { background: rgba(159,178,209,.14); color: var(--text-muted); }
+
+/* ── Mini Calendar (Earth/Gregorian reference, Calendar Research page) ──── */
+
+.mini-cal-card {
+  max-width: 320px;
+  padding: 18px;
+}
+
+.mini-cal-today {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .98rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.mc-chevron {
+  background: transparent;
+  border: 1px solid var(--surface-border);
+  color: var(--text-muted);
+  border-radius: 6px;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: .75rem;
+  transition: transform .2s ease;
+}
+.mc-chevron:hover { color: var(--text); border-color: var(--gold); }
+.mini-cal-card.collapsed .mc-chevron { transform: rotate(-90deg); }
+
+.mini-cal-body { overflow: hidden; }
+.mini-cal-card.collapsed .mini-cal-body { display: none; }
+
+.mini-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.mini-cal-month { font-size: .82rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+.mini-cal-nav { display: flex; gap: 6px; }
+.mini-cal-nav button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  font-size: .8rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.mini-cal-nav button:hover { background: var(--surface-border); color: var(--text); }
+
+.mini-cal-weekdays, .mini-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.mini-cal-weekdays span {
+  text-align: center;
+  font-size: .68rem;
+  color: var(--text-muted);
+  padding-bottom: 6px;
+  font-weight: 600;
+}
+
+.mc-day {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .84rem;
+  color: var(--text);
+  cursor: default;
+  border-radius: 50%;
+}
+.mc-day.mc-outside { color: var(--text-muted); opacity: .45; }
+.mc-day.mc-today { background: var(--gold); color: #0b1b33; font-weight: 700; }
+.mc-day.mc-has-event::after {
+  content: '';
+  position: absolute;
+  bottom: 3px; left: 50%;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--royal-blue);
+  transform: translateX(-50%);
+}
+.mc-day.mc-today.mc-has-event::after { background: #0b1b33; }
+.mc-day[title] { cursor: help; }
+
+.mc-synchrony-row { margin-top: 8px; }
+.mc-synchrony-day {
+  padding: 8px 10px;
+  text-align: center;
+  font-size: .76rem;
+  font-weight: 600;
+  color: var(--gold);
+  background: rgba(212, 175, 55, .1);
+  border: 1px dashed var(--gold);
+  border-radius: 8px;
+}
+.mc-synchrony-day.mc-today { background: var(--gold); color: #0b1b33; }

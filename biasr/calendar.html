@@ -51,13 +51,33 @@
     </div>
 
     <!-- Primary live readout -->
-    <div class="card" style="margin-bottom:24px;">
-      <div class="label">Official UBC Date</div>
-      <div class="value" id="ubc-date" style="font-size:2rem;">—</div>
-      <div style="color:var(--text-muted); font-size:.85rem; margin-bottom:14px;" id="ubc-iso">—</div>
-      <div class="label">Live UBC Time (ATF-gated)</div>
-      <div class="value mono" id="ubc-time" style="font-size:2.6rem; color:var(--gold);">—:—:—</div>
-      <div style="margin-top:14px;" id="ubc-status"></div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; margin-bottom:24px;">
+      <div class="card" style="flex:2; min-width:280px;">
+        <div class="label">Official UBC Date</div>
+        <div class="value" id="ubc-date" style="font-size:2rem;">—</div>
+        <div style="color:var(--text-muted); font-size:.85rem; margin-bottom:14px;" id="ubc-iso">—</div>
+        <div class="label">Live UBC Time (ATF-gated)</div>
+        <div class="value mono" id="ubc-time" style="font-size:2.6rem; color:var(--gold);">—:—:—</div>
+        <div style="margin-top:14px;" id="ubc-status"></div>
+      </div>
+
+      <div class="card mini-cal-card">
+        <div class="mini-cal-today">
+          <span class="mc-today-label">—</span>
+          <button type="button" class="mc-chevron mc-toggle" aria-label="Collapse calendar">▾</button>
+        </div>
+        <div class="mini-cal-body">
+          <div class="mini-cal-header">
+            <span class="mini-cal-month">—</span>
+            <div class="mini-cal-nav">
+              <button type="button" class="mc-prev" aria-label="Previous month">▲</button>
+              <button type="button" class="mc-next" aria-label="Next month">▼</button>
+            </div>
+          </div>
+          <div class="mini-cal-weekdays"></div>
+          <div class="mini-cal-grid"></div>
+        </div>
+      </div>
     </div>
 
     <div class="card-grid">
@@ -99,6 +119,7 @@
 
 <script src="js/main.js"></script>
 <script src="js/calendar-engine.js"></script>
+<script src="js/mini-calendar.js"></script>
 <script>
 (function () {
   const el = (id) => document.getElementById(id);
