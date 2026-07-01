@@ -34,8 +34,8 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-controls">
-      <button class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
+      <button type="button" class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </nav>
 </header>
@@ -61,7 +61,7 @@
       <h2>Unified Binod Calendar</h2>
     </div>
     <div class="card" style="max-width:520px;">
-      <div class="label">Current UBC Date &amp; Time</div>
+      <div class="label">Official UBC Date</div>
       <div class="value" id="home-ubc-date" style="font-size:1.5rem;">—</div>
       <div class="value mono" id="home-ubc-time" style="font-size:2rem; color:var(--gold);">—:—:—</div>
       <div style="margin-top:12px;" id="home-ubc-status"></div>
@@ -85,8 +85,9 @@
   const el = (id) => document.getElementById(id);
   CalendarEngine.init((state) => {
     const u = state.ubc;
-    el('home-ubc-date').textContent = `${String(u.day).padStart(2,'0')} ${u.monthName}, Year ${u.year} UBC`;
-    el('home-ubc-time').textContent = `${String(u.hh).padStart(2,'0')}:${String(u.mm).padStart(2,'0')}:${String(u.ss).padStart(2,'0')}`;
+    const c = state.clock;
+    el('home-ubc-date').textContent = u.fullDate;
+    el('home-ubc-time').textContent = `${String(c.hh).padStart(2,'0')}:${String(c.mm).padStart(2,'0')}:${String(c.ss).padStart(2,'0')}`;
     el('home-ubc-status').innerHTML = state.active
       ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE TEMPORAL FLOW</span>'
       : '<span class="status-pill paused"><span class="status-dot"></span>TEMPORAL FLOW PAUSED</span>';

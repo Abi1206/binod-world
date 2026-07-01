@@ -33,8 +33,8 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-controls">
-      <button class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
+      <button type="button" class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </nav>
 </header>
@@ -42,17 +42,20 @@
 <section>
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">BIASR-STD-001 · Live Reference Implementation</div>
+      <div class="eyebrow">BIASR-STD-001 · UBC Standard v1.0.1 · Live Reference Implementation</div>
       <h1>Unified Binod Calendar</h1>
-      <p>The UBC is the official civil timekeeping system of the Republic of Binod, derived from
-      Temporal Synchronization Theory and computed live in your browser from the published
-      Founding Epoch — no server, no hardcoded dates.</p>
+      <p>The Official UBC Date is computed continuously from the published Founding Epoch and
+      Temporal Synchronization Index — it is never paused. The Live UBC Time below is governed
+      separately by the Active Temporal Flow (ATF) policy and only advances during the official
+      gameplay window.</p>
     </div>
 
     <!-- Primary live readout -->
     <div class="card" style="margin-bottom:24px;">
-      <div class="label">Current UBC Date &amp; Time</div>
+      <div class="label">Official UBC Date</div>
       <div class="value" id="ubc-date" style="font-size:2rem;">—</div>
+      <div style="color:var(--text-muted); font-size:.85rem; margin-bottom:14px;" id="ubc-iso">—</div>
+      <div class="label">Live UBC Time (ATF-gated)</div>
       <div class="value mono" id="ubc-time" style="font-size:2.6rem; color:var(--gold);">—:—:—</div>
       <div style="margin-top:14px;" id="ubc-status"></div>
     </div>
@@ -64,7 +67,7 @@
       <div class="card"><div class="label">Current Earth Time (IST)</div><div class="value mono" id="stat-ist">—</div></div>
       <div class="card"><div class="label">Temporal Synchronization Index (TSI)</div><div class="value mono" id="stat-tsi">—</div></div>
       <div class="card"><div class="label">Founding Epoch</div><div class="value" style="font-size:1rem;" id="stat-epoch">—</div></div>
-      <div class="card"><div class="label">Elapsed UBC Civil Days</div><div class="value" id="stat-days">—</div></div>
+      <div class="card"><div class="label">Elapsed UBC Civil Days (BJDN)</div><div class="value" id="stat-days">—</div></div>
       <div class="card"><div class="label">Official Gameplay Window (IST)</div><div class="value" style="font-size:1.1rem;" id="stat-window">—</div></div>
     </div>
   </div>
@@ -102,20 +105,22 @@
 
   CalendarEngine.init((state) => {
     const u = state.ubc;
-    el('ubc-date').textContent = `${String(u.day).padStart(2, '0')} ${u.monthName}, Year ${u.year} UBC`;
-    el('ubc-time').textContent = `${String(u.hh).padStart(2,'0')}:${String(u.mm).padStart(2,'0')}:${String(u.ss).padStart(2,'0')}`;
+    const c = state.clock;
+    el('ubc-date').textContent = `${u.fullDate}${u.isSynchronyDay ? ' (Synchrony Day)' : ''}`;
+    el('ubc-iso').textContent = u.isoDate;
+    el('ubc-time').textContent = `${String(c.hh).padStart(2,'0')}:${String(c.mm).padStart(2,'0')}:${String(c.ss).padStart(2,'0')}`;
 
     el('ubc-status').innerHTML = state.active
       ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE TEMPORAL FLOW</span>'
       : '<span class="status-pill paused"><span class="status-dot"></span>TEMPORAL FLOW PAUSED</span>';
 
-    el('stat-month').textContent = `${u.monthName} (Month ${u.month} of 12)`;
-    el('stat-year').textContent = `Year ${u.year} UBC`;
+    el('stat-month').textContent = `${u.monthName} (Month ${u.month} of 13)`;
+    el('stat-year').textContent = `Year ${u.year} UBC${u.isLeap ? ' (leap)' : ''}`;
     el('stat-weekday').textContent = u.weekdayName;
     el('stat-ist').textContent = `${state.ist.date} ${state.ist.time} IST`;
-    el('stat-tsi').textContent = state.tsi.toFixed(4);
+    el('stat-tsi').textContent = state.tsi.toFixed(6);
     el('stat-epoch').textContent = CalendarEngine.EPOCH_LABEL;
-    el('stat-days').textContent = u.totalDays.toLocaleString();
+    el('stat-days').textContent = u.N.toLocaleString();
     el('stat-window').textContent = CalendarEngine.WINDOW_LABEL;
   });
 })();

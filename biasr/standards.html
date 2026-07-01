@@ -33,8 +33,8 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="nav-controls">
-      <button class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
+      <button type="button" class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </nav>
 </header>
@@ -51,10 +51,12 @@
     <details class="standard-item" open>
       <summary><span><span class="std-id">BIASR-STD-001</span>Unified Binod Calendar</span><span class="std-status">Published</span></summary>
       <div class="standard-body">
-        <p><strong>Scope:</strong> Defines the Founding Epoch, calendar structure (7-day week,
-        30-day month, 360-day year), and the Active Temporal Flow synchronization policy governing
-        civil time advancement.</p>
-        <p><strong>Effective:</strong> 2026-06-01 &middot; <strong>Version:</strong> 1.0.0</p>
+        <p><strong>Scope:</strong> Defines the Founding Epoch (23 April 2021, 06:00 UTC), the
+        13-month/28-day calendar structure with three-tier leap correction, the Temporal
+        Synchronization Index (TSI = 86,400/86,736), and the bidirectional Gregorian&harr;UBC
+        conversion algorithm. The Active Temporal Flow policy governing the live observatory
+        clock is a separate BIASR operational policy layered on top of this standard.</p>
+        <p><strong>Effective:</strong> 2026-06-01 &middot; <strong>Version:</strong> 1.0.1</p>
         <p><a href="calendar.html">View live reference implementation →</a></p>
       </div>
     </details>
