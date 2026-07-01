@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observatories — BIASR</title>
+<meta name="description" content="BIASR observatory dashboard — solar observations, sky maps, telescope imagery, and the live Temporal Synchronization Monitor.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="gov-link-bar">
+  Republic of Binod Government Ecosystem — <a href="https://abi1206.github.io/binod-world/" target="_blank" rel="noopener">Government Portal ↗</a>
+</div>
+
+<header class="site-header">
+  <nav class="nav-bar">
+    <a class="brand" href="index.html">
+      <img src="assets/images/logo.png" alt="BIASR seal">
+      <span class="brand-text"><strong>BIASR</strong><span>Republic of Binod</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="observatory.html" aria-current="page">Observatories</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="calendar.html">Calendar Research</a></li>
+      <li><a href="standards.html">Scientific Standards</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Observatory Network</div>
+      <h1>Observatory Dashboard</h1>
+      <p>Live instrumentation status, sky imagery, and the temporal-synchronization telemetry that
+      keeps every observation log timestamped against the Unified Binod Calendar.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card division-card">
+        <img src="assets/images/observatory-main.png" alt="Primary observatory dome">
+        <div class="card-body"><h3>Primary Observatory</h3><p style="color:var(--text-muted); margin:0;">Main dome — nightly deep-sky survey.</p></div>
+      </div>
+      <div class="card division-card">
+        <img src="assets/images/solar-observation.png" alt="Solar observation imagery">
+        <div class="card-body"><h3>Solar Observation</h3><p style="color:var(--text-muted); margin:0;">Continuous solar disk and sunspot monitoring.</p></div>
+      </div>
+      <div class="card division-card">
+        <img src="assets/images/sky-map.png" alt="Sky map">
+        <div class="card-body"><h3>Sky Map</h3><p style="color:var(--text-muted); margin:0;">Current charted sky region.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Live Instrumentation</div>
+      <h2>Lunar Phase &amp; Orbital Simulation</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card" style="text-align:center;">
+        <div class="label" style="margin-bottom:14px;">Current Lunar Phase</div>
+        <div class="lunar-phase" style="margin:0 auto;"><div class="shadow" id="moon-shadow"></div></div>
+        <div class="value" style="font-size:1rem; margin-top:14px;" id="moon-label">—</div>
+        <div style="color:var(--text-muted); font-size:.82rem;" id="moon-illum">—</div>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:14px; text-align:center;">Orbital Simulation — Binod Solar System</div>
+        <div class="orbit-sim">
+          <div class="sun"></div>
+          <div class="orbit-ring" style="width:110px; height:110px;"></div>
+          <div class="orbit-ring" style="width:170px; height:170px;"></div>
+          <div class="orbit-ring" style="width:230px; height:230px;"></div>
+          <div class="orbit-track" style="width:110px; height:110px; top:50%; left:50%; margin:-55px; animation-duration:6s;"><div class="orbit-planet" style="background:#9fb2d1;"></div></div>
+          <div class="orbit-track" style="width:170px; height:170px; top:50%; left:50%; margin:-85px; animation-duration:11s;"><div class="orbit-planet" style="background:var(--gold);"></div></div>
+          <div class="orbit-track" style="width:230px; height:230px; top:50%; left:50%; margin:-115px; animation-duration:19s;"><div class="orbit-planet" style="background:var(--royal-blue);"></div></div>
+        </div>
+        <p style="color:var(--text-muted); font-size:.82rem; text-align:center; margin-top:10px;">Illustrative orbital periods, not to scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Records</div>
+      <h2>Research Logs</h2>
+    </div>
+    <div class="log-list">
+      <div class="log-item"><time>2026-06-22</time><span>End Dimension Laboratory — void-sky ambient light survey, sector 4, logged nominal.</span></div>
+      <div class="log-item"><time>2026-06-15</time><span>Nether Research Division — portal compression field readings recorded at transit point NR-3.</span></div>
+      <div class="log-item"><time>2026-06-10</time><span>Astrophysics Department — orbital integration run completed, 500-year window, no instability detected.</span></div>
+      <div class="log-item"><time>2026-06-04</time><span>Primary Observatory — first full-sky deep survey archived to BIASR-STD-002 coordinate frame.</span></div>
+      <div class="log-item"><time>2026-06-01</time><span>Temporal Physics Division — Unified Binod Calendar engine calibrated against Founding Epoch.</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Live Telemetry</div>
+      <h2>Temporal Synchronization Monitor</h2>
+      <p>Reference implementation of the Active Temporal Flow (ATF) policy — see the <a href="calendar.html">Unified Binod Calendar</a> for the full dashboard.</p>
+    </div>
+
+    <div class="card" style="max-width:640px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+        <div class="label" style="margin:0;">Synchronization Status</div>
+        <div id="mon-status"></div>
+      </div>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px,1fr));">
+        <div><div class="label">Clock Drift</div><div class="value mono" style="font-size:1.1rem;" id="mon-drift">—</div></div>
+        <div><div class="label">TSI</div><div class="value mono" style="font-size:1.1rem;" id="mon-tsi">—</div></div>
+        <div><div class="label">Gameplay Window</div><div class="value" style="font-size:1rem;" id="mon-window">—</div></div>
+        <div><div class="label">Last Calibration</div><div class="value mono" style="font-size:.95rem;" id="mon-calib">—</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>Republic of Binod</strong> · Ministry of Science and Astronomical Research</p>
+    <p>Binodian Institute for Astronomical and Space Research (BIASR) · Established 2026</p>
+    <p>© <span data-year></span> BIASR. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/observatory.js"></script>
+<script src="js/calendar-engine.js"></script>
+<script>
+(function () {
+  const el = (id) => document.getElementById(id);
+  CalendarEngine.init((state) => {
+    el('mon-status').innerHTML = state.active
+      ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE TEMPORAL FLOW</span>'
+      : '<span class="status-pill paused"><span class="status-dot"></span>TEMPORAL FLOW PAUSED</span>';
+    el('mon-drift').textContent = `${state.drift.toFixed(3)}s`;
+    el('mon-tsi').textContent = state.tsi.toFixed(4);
+    el('mon-window').textContent = CalendarEngine.WINDOW_LABEL;
+    el('mon-calib').textContent = new Date(state.lastCalibration).toLocaleString();
+  });
+})();
+</script>
+</body>
+</html>

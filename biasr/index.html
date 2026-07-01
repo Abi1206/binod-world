@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIASR — Binodian Institute for Astronomical and Space Research</title>
+<meta name="description" content="Official scientific research authority of the Republic of Binod — astronomy, space research, and temporal physics.">
+<meta property="og:image" content="assets/images/og-image.png">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="gov-link-bar">
+  Republic of Binod Government Ecosystem — <a href="https://abi1206.github.io/binod-world/" target="_blank" rel="noopener">Government Portal ↗</a>
+</div>
+
+<header class="site-header">
+  <nav class="nav-bar">
+    <a class="brand" href="index.html">
+      <img src="assets/images/logo.png" alt="BIASR seal">
+      <span class="brand-text"><strong>BIASR</strong><span>Republic of Binod</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="observatory.html">Observatories</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="calendar.html">Calendar Research</a></li>
+      <li><a href="standards.html">Scientific Standards</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="--hero-img: url('assets/images/hero-bg.png');">
+  <div class="container hero-content">
+    <div class="hero-eyebrow">Official Scientific Research Authority of the Republic of Binod</div>
+    <h1>Exploring the Universe Beyond the Horizon.</h1>
+    <p>The Binodian Institute for Astronomical and Space Research advances humanity's
+    understanding of the Binod universe through observation, space science, and temporal physics.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="research.html">Explore Research</a>
+      <a class="btn btn-secondary" href="observatory.html">Latest Publications</a>
+      <a class="btn btn-secondary" href="calendar.html">Unified Binod Calendar</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Live</div>
+      <h2>Unified Binod Calendar</h2>
+    </div>
+    <div class="card" style="max-width:520px;">
+      <div class="label">Current UBC Date &amp; Time</div>
+      <div class="value" id="home-ubc-date" style="font-size:1.5rem;">—</div>
+      <div class="value mono" id="home-ubc-time" style="font-size:2rem; color:var(--gold);">—:—:—</div>
+      <div style="margin-top:12px;" id="home-ubc-status"></div>
+      <div style="margin-top:16px;"><a class="btn btn-secondary" href="calendar.html">Open full dashboard →</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>Republic of Binod</strong> · Ministry of Science and Astronomical Research</p>
+    <p>Binodian Institute for Astronomical and Space Research (BIASR) · Established 2026</p>
+    <p>© <span data-year></span> BIASR. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/calendar-engine.js"></script>
+<script>
+(function () {
+  const el = (id) => document.getElementById(id);
+  CalendarEngine.init((state) => {
+    const u = state.ubc;
+    el('home-ubc-date').textContent = `${String(u.day).padStart(2,'0')} ${u.monthName}, Year ${u.year} UBC`;
+    el('home-ubc-time').textContent = `${String(u.hh).padStart(2,'0')}:${String(u.mm).padStart(2,'0')}:${String(u.ss).padStart(2,'0')}`;
+    el('home-ubc-status').innerHTML = state.active
+      ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE TEMPORAL FLOW</span>'
+      : '<span class="status-pill paused"><span class="status-dot"></span>TEMPORAL FLOW PAUSED</span>';
+  });
+})();
+</script>
+</body>
+</html>

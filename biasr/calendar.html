@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unified Binod Calendar — BIASR</title>
+<meta name="description" content="Live Unified Binod Calendar (UBC) dashboard — official civil timekeeping system of the Republic of Binod, operated by BIASR.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="gov-link-bar">
+  Republic of Binod Government Ecosystem — <a href="https://abi1206.github.io/binod-world/" target="_blank" rel="noopener">Government Portal ↗</a>
+</div>
+
+<header class="site-header">
+  <nav class="nav-bar">
+    <a class="brand" href="index.html">
+      <img src="assets/images/logo.png" alt="BIASR seal">
+      <span class="brand-text"><strong>BIASR</strong><span>Republic of Binod</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="observatory.html">Observatories</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="calendar.html" aria-current="page">Calendar Research</a></li>
+      <li><a href="standards.html">Scientific Standards</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="theme-toggle" aria-label="Toggle dark and light mode">🌙 Dark</button>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">BIASR-STD-001 · Live Reference Implementation</div>
+      <h1>Unified Binod Calendar</h1>
+      <p>The UBC is the official civil timekeeping system of the Republic of Binod, derived from
+      Temporal Synchronization Theory and computed live in your browser from the published
+      Founding Epoch — no server, no hardcoded dates.</p>
+    </div>
+
+    <!-- Primary live readout -->
+    <div class="card" style="margin-bottom:24px;">
+      <div class="label">Current UBC Date &amp; Time</div>
+      <div class="value" id="ubc-date" style="font-size:2rem;">—</div>
+      <div class="value mono" id="ubc-time" style="font-size:2.6rem; color:var(--gold);">—:—:—</div>
+      <div style="margin-top:14px;" id="ubc-status"></div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card"><div class="label">Current Month</div><div class="value" id="stat-month">—</div></div>
+      <div class="card"><div class="label">Current Year</div><div class="value" id="stat-year">—</div></div>
+      <div class="card"><div class="label">Current Weekday</div><div class="value" id="stat-weekday">—</div></div>
+      <div class="card"><div class="label">Current Earth Time (IST)</div><div class="value mono" id="stat-ist">—</div></div>
+      <div class="card"><div class="label">Temporal Synchronization Index (TSI)</div><div class="value mono" id="stat-tsi">—</div></div>
+      <div class="card"><div class="label">Founding Epoch</div><div class="value" style="font-size:1rem;" id="stat-epoch">—</div></div>
+      <div class="card"><div class="label">Elapsed UBC Civil Days</div><div class="value" id="stat-days">—</div></div>
+      <div class="card"><div class="label">Official Gameplay Window (IST)</div><div class="value" style="font-size:1.1rem;" id="stat-window">—</div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Policy</div>
+      <h2>Active Temporal Flow (ATF)</h2>
+    </div>
+    <div class="note">
+      The Unified Binod Calendar advances only during Active Temporal Flow (ATF), representing the
+      synchronization between Earth's observers and the Binod world. When no official gameplay
+      session is active, civil time is suspended until synchronization resumes.
+      Binodian Civil Time advances only during the official gameplay window (20:00 – 03:00 IST) and
+      is frozen at all other hours. It resumes automatically at 20:00 IST with no manual reset.
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>Republic of Binod</strong> · Ministry of Science and Astronomical Research</p>
+    <p>Binodian Institute for Astronomical and Space Research (BIASR) · Established 2026</p>
+    <p>© <span data-year></span> BIASR. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/calendar-engine.js"></script>
+<script>
+(function () {
+  const el = (id) => document.getElementById(id);
+
+  CalendarEngine.init((state) => {
+    const u = state.ubc;
+    el('ubc-date').textContent = `${String(u.day).padStart(2, '0')} ${u.monthName}, Year ${u.year} UBC`;
+    el('ubc-time').textContent = `${String(u.hh).padStart(2,'0')}:${String(u.mm).padStart(2,'0')}:${String(u.ss).padStart(2,'0')}`;
+
+    el('ubc-status').innerHTML = state.active
+      ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE TEMPORAL FLOW</span>'
+      : '<span class="status-pill paused"><span class="status-dot"></span>TEMPORAL FLOW PAUSED</span>';
+
+    el('stat-month').textContent = `${u.monthName} (Month ${u.month} of 12)`;
+    el('stat-year').textContent = `Year ${u.year} UBC`;
+    el('stat-weekday').textContent = u.weekdayName;
+    el('stat-ist').textContent = `${state.ist.date} ${state.ist.time} IST`;
+    el('stat-tsi').textContent = state.tsi.toFixed(4);
+    el('stat-epoch').textContent = CalendarEngine.EPOCH_LABEL;
+    el('stat-days').textContent = u.totalDays.toLocaleString();
+    el('stat-window').textContent = CalendarEngine.WINDOW_LABEL;
+  });
+})();
+</script>
+</body>
+</html>
