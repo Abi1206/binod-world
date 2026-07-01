@@ -20,7 +20,7 @@
 
   function initMiniCalendar(root) {
     const CE = window.CalendarEngine;
-    const today = CE.computeUBCDate(Date.now());
+    let today = CE.computeUBCDate(Date.now());
     const view = { year: today.year, month: today.month };
 
     const todayLabel = root.querySelector('.mc-today-label');
@@ -87,6 +87,16 @@
     toggleBtn.addEventListener('click', () => root.classList.toggle('collapsed'));
 
     render();
+
+    // Auto-sync: called on every live tick (see calendar.html) with the
+    // current UBC date, so the "today" highlight and label move on their own
+    // when the UBC day rolls over -- no page refresh required.
+    root._mcUpdate = function (ubc) {
+      if (today.year === ubc.year && today.month === ubc.month && today.day === ubc.day) return;
+      today = ubc;
+      todayLabel.textContent = `${today.weekdayName}, ${today.day} ${today.monthName}`;
+      render();
+    };
   }
 
   document.addEventListener('DOMContentLoaded', () => {

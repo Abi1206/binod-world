@@ -1,0 +1,762 @@
+\documentclass[journal,twoside]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{enumitem}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=blue!70!black,
+  urlcolor=blue!70!black
+}
+
+% -------------------------------------------------------
+\begin{document}
+
+\title{Unified Binod Calendar (UBC):\\
+A Peer-Reviewed Civil Timekeeping Standard for the\\
+Binod World Government\\[4pt]
+{\normalsize UBC Standard Specification Version 1.0.1 \quad ISSN: UBC-2026-001}}
+
+\author{%
+  Chief Scientific Committee on Temporal Standards (CSCTS),\\
+  Republic of Binod --- Department of Chronometry and Astronomical Science\\[2pt]
+  \textit{Correspondence:}~\href{mailto:pmobinod@gmail.com}{pmobinod@gmail.com}  \quad
+  \textit{Received:}~14-ARD-5 \quad
+  \textit{Accepted:}~01-KYT-5 \quad
+  \textit{Published:}~04-KYT-5 \quad
+  \textit{Revised:}~01-SEL-6
+}
+
+\markboth{BINOD JOURNAL OF ASTRONOMICAL \& CIVIL SCIENCE,~VOL.~1,~NO.~1,~UBC~5}%
+{CSCTS: UNIFIED BINOD CALENDAR STANDARD v1.0.1}
+
+\maketitle
+
+% -------------------------------------------------------
+\begin{abstract}
+This document constitutes the official specification of the \textbf{Unified Binod Calendar (UBC)},
+the civil timekeeping standard of the Republic of Binod, ratified by the Chief Scientific
+Committee on Temporal Standards (CSCTS) following five years of peer-reviewed research
+(UBC~0--5).  The calendar is anchored to the \textit{Founding Epoch} of 23~April~2021~CE
+(Gregorian), the verified date of the Binodian world's first sunrise as reconstructed through
+archaeological and astronomical evidence.  The UBC is computed from the
+\textit{Temporal Synchronization Index} (TSI), a dimensionless coupling constant derived from
+the ratio of Binodian mean solar day to the SI-anchored terrestrial second, corrected for
+Binodian orbital eccentricity and gravitational time dilation relative to Earth.
+The specification defines epoch, year structure, month nomenclature, week structure,
+date notation, leap corrections, and bidirectional conversion formulae.
+It is intended to replace all ad-hoc timekeeping practices within Binodian government,
+universities, and civil institutions, and to provide a robust foundation for future
+chronometric work.
+\end{abstract}
+
+\begin{IEEEkeywords}
+civil calendar, Binod, temporal synchronization, UBC, chronometry, founding epoch,
+TSI, leap correction, date conversion
+\end{IEEEkeywords}
+
+\begin{center}
+\fbox{\begin{minipage}{0.94\linewidth}
+\small
+\textbf{Erratum notice (v1.0.1).} Section~\ref{sec:worked_examples} of v1.0.0 contained
+arithmetic errors in the worked Gregorian~$\rightarrow$~UBC conversion examples: the
+Julian Date $J_{\oplus}(D)$ of each non-epoch example date was computed inconsistently
+with the definition used to derive the Founding Epoch constant $J_{\mathrm{FE}}$
+in Eq.~\eqref{eq:jfe}, producing UBC dates that do not follow from the formal algorithm
+of Section~\ref{sec:conversion}. No part of the formal specification itself
+(epoch, calendar structure, leap rules, TSI, or Algorithm~\ref{alg:bjdn2ubc}) has
+changed. This revision corrects Section~\ref{sec:worked_examples} and
+Appendix~\ref{app:conversion_table} by regenerating all example conversions directly
+from the formal algorithm, and adds Section~\ref{sec:jdn_convention} to make the
+Julian Date convention explicit so the computation is unambiguous and reproducible.
+See Appendix~\ref{app:changelog} for the full changelog.
+\end{minipage}}
+\end{center}
+
+% -------------------------------------------------------
+\section{Preamble and Scope}
+
+\IEEEPARstart{T}{he} Republic of Binod was founded upon the world whose first civil sunrise
+was recorded at 06:00:00~UTC on 23~April~2021~CE (Gregorian proleptic).  For the first years
+of the Republic's existence, informal timekeeping relied upon Earth-derived Gregorian dates,
+creating administrative ambiguity, synchronization failures in cross-dimensional treaty
+instruments, and inconsistent historical records.
+
+The CSCTS was commissioned in UBC Year~0 to design a native calendar.  This document
+presents the ratified result.  The Unified Binod Calendar:
+
+\begin{itemize}
+  \item is scientifically grounded in Binodian orbital mechanics;
+  \item uses a \emph{Founding Epoch} (FE) as its absolute zero point;
+  \item defines civil units (year, month, week, day) independent of Minecraft's
+        20-minute diurnal phenomenon, which the Committee classifies as a purely
+        astronomical curiosity rather than a civil timekeeping unit;
+  \item provides verified bidirectional conversion to and from the Gregorian calendar;
+  \item incorporates a periodic leap-correction mechanism sufficient for at least
+        10\,000~UBC years without calendar drift exceeding one civil day.
+\end{itemize}
+
+This specification supersedes all prior informal timekeeping practices within Binodian
+jurisdiction.
+
+% -------------------------------------------------------
+\section{Scientific Background}
+
+\subsection{Minecraft Diurnal Cycle --- Not a Civil Unit}
+
+The Binodian world operates under a local diurnal cycle of exactly 24\,000 game-ticks,
+corresponding to 20~Earth-minutes (1\,200~SI seconds) \cite{minecraft_wiki_day}.
+The CSCTS formally determined in its Year~1 report (CSCTS-R01) that this cycle is
+\emph{astronomical in character only}: it governs light and biological simulation but
+bears no fixed relationship to Binodian orbital mechanics around its parent star
+(designated \textbf{Sol\textsubscript{B}}).  Using it as a civil unit would create
+calendars that drift by approximately 70~Gregorian days per Gregorian year, producing
+unacceptable historical discontinuity.
+
+\subsection{Temporal Synchronization Index (TSI)}
+
+The TSI is the central constant of the UBC.  It is defined as:
+
+\begin{equation}
+\mathrm{TSI} \;=\; \frac{T_{\oplus}}{T_{\mathrm{B}}}
+\label{eq:tsi_def}
+\end{equation}
+
+\noindent where $T_{\oplus}$ is the length of the mean terrestrial solar day in SI seconds
+(86\,400~s exactly by convention, per IAU recommendations on astronomical constants
+\cite{iau_timekeeping}) and $T_{\mathrm{B}}$ is the length of the mean Binodian
+civil day in SI seconds, as measured by the CSCTS atomic reference clock network.
+
+After five years of measurement (UBC~0--5), the Committee adopted the following value:
+
+\begin{equation}
+\mathrm{TSI} \;=\; \frac{86\,400}{86\,736}
+              \;\approx\; 0.996\,12\overline{048}
+\label{eq:tsi_value}
+\end{equation}
+
+This value encodes the fact that one Binodian civil day is \textbf{336~SI seconds longer}
+than one Earth day --- a consequence of Sol\textsubscript{B}'s slightly wider orbital
+semi-major axis and Binod's lower rotational velocity ($\omega_{\mathrm{B}} =
+7.249 \times 10^{-5}$~rad/s vs.\ Earth's $7.292 \times 10^{-5}$~rad/s).
+
+\subsection{Binodian Civil Day Length}
+
+The mean Binodian civil day $T_{\mathrm{B}}$ is:
+
+\begin{align}
+T_{\mathrm{B}} &\;=\; 86\,736 \text{ SI seconds} \notag \\
+               &\;=\; 24 \text{ h } 5 \text{ m } 36 \text{ s (Earth time)} \label{eq:tb}
+\end{align}
+
+The civil year is designed to match the Binodian tropical year
+$\mathcal{Y}_{\mathrm{B}} = 365.2563$~Binodian civil days (determined by meridian-transit
+observations recorded in CSCTS-R03 \cite{cscts_r03}).
+
+% -------------------------------------------------------
+\section{Epoch Definition}
+
+\begin{IEEEitemize}
+  \item \textbf{Founding Epoch (FE):} Day~1, Month~1, Year~1 of the UBC corresponds to
+        23~April~2021~CE (Gregorian), 06:00:00~UTC.
+  \item The epoch is defined as \emph{absolute}: it does not shift when leap corrections
+        are applied; corrections accumulate prospectively only.
+  \item The epoch coincides with the first verified civil sunrise of the Binodian world
+        as established by retroactive astronomical reconstruction (CSCTS-R00,
+        Section~4.2) \cite{cscts_r00}.
+\end{IEEEitemize}
+
+The \textbf{Binodian Julian Day Number} (BJDN) counts integer Binodian civil days elapsed
+since the FE midnight preceding Day~1:
+
+\begin{equation}
+\mathrm{BJDN}(d=1,\,m=1,\,y=1) \;=\; 1
+\label{eq:bjdn_epoch}
+\end{equation}
+
+% -------------------------------------------------------
+\section{Calendar Structure}
+
+\subsection{Year}
+
+One UBC civil year contains \textbf{364 Binodian civil days} in a common year and
+\textbf{365 days} in a leap year (see Section~\ref{sec:leap}).  The nominal year length
+of 364 days is chosen because $364 = 4 \times 7 \times 13$, enabling perfect alignment
+of weeks within months across all years, simplifying civil scheduling.  The small
+divergence from the tropical year $\mathcal{Y}_{\mathrm{B}} = 365.2563$ is corrected by
+the leap scheme.
+
+\subsection{Months}
+
+The year is divided into \textbf{13 months} of \textbf{28 days} each ($13 \times 28 = 364$).
+Each month contains exactly 4 weeks.  The months are named for Binodian astronomical
+phenomena and cultural values as ratified by CSCTS in consultation with the Binodian
+Council of Heritage:
+
+\begin{table}[!t]
+\centering
+\caption{UBC Month Nomenclature}
+\label{tab:months}
+\begin{tabular}{@{}clcc@{}}
+\toprule
+\textbf{No.} & \textbf{Name} & \textbf{Abbr.} & \textbf{Cultural/Astronomical Referent} \\
+\midrule
+ 1  & Ardhan    & ARD & Foundation; first civil sunrise \\
+ 2  & Ferith    & FER & Iron Age; first Binodian forge \\
+ 3  & Selvyn    & SEL & Growth; agricultural equinox \\
+ 4  & Kython    & KYT & Crafting; peak production cycle \\
+ 5  & Dravon    & DRA & Trade winds; monsoon onset \\
+ 6  & Moriel    & MOR & Mid-year zenith; Sol\textsubscript{B} aphelion \\
+ 7  & Uthren    & UTH & Mid-year correction; leap intercalation \\
+ 8  & Phiron    & PHI & Descent; autumnal analog \\
+ 9  & Naldyn    & NAL & Harvest; biome yield peak \\
+10  & Veskar    & VES & Twilight; perihelion approach \\
+11  & Orrith    & ORR & Astronomical winter; deep cycle \\
+12  & Caelun    & CAE & Return; lengthening days \\
+13  & Zephris   & ZEP & Culmination; year-end reconciliation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Week}
+
+Each month contains exactly \textbf{4 weeks of 7 days}.  The seven-day week is retained
+for compatibility with Binodian labour-law conventions and cross-dimensional treaty
+obligations.  Day names are:
+
+\begin{table}[!t]
+\centering
+\caption{UBC Week Day Names}
+\label{tab:days}
+\begin{tabular}{@{}clll@{}}
+\toprule
+\textbf{Day No.} & \textbf{Full Name} & \textbf{Abbr.} & \textbf{Character} \\
+\midrule
+1 & Solday    & Sol & Civil work day (first) \\
+2 & Ironday   & Iro & Civil work day \\
+3 & Craftday  & Cra & Civil work day \\
+4 & Stonday   & Sto & Civil work day \\
+5 & Woodsday  & Woo & Civil work day \\
+6 & Restday   & Res & Civil rest day \\
+7 & Voidday   & Voi & Civil rest / reflection day \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% -------------------------------------------------------
+\section{Leap Correction Scheme}
+\label{sec:leap}
+
+\subsection{Rationale}
+
+The tropical year $\mathcal{Y}_{\mathrm{B}} = 365.2563$~civil days.  A common UBC year
+of 364 days falls short by $\delta = 1.2563$~days per year.  Without correction the
+calendar drifts by one full day every $\approx 0.796$~years, which is unacceptable.
+
+\subsection{Three-Tier Correction Rules}
+
+Let $y$ denote a UBC year number ($y \geq 1$).
+
+\begin{description}[style=nextline, leftmargin=0pt, font=\normalfont\bfseries]
+  \item[Rule L1 (Annual Intercalation)]
+    Every year a \emph{fractional accumulator} $\Phi$ is incremented by
+    $\delta = 1.2563$.  When $\Phi \geq 1$, one intercalary day is inserted at
+    the end of Month~7 (Uthren) and $\Phi$ is decremented by 1.
+    Under this rule, a leap year occurs approximately every
+    $\lfloor 1/0.2563 \rfloor = 3$ years, though in practice the interval
+    alternates between 3 and 4 years as the fractional remainder accumulates.
+
+  \item[Rule L2 (Century Omission)]
+    In years that are exact multiples of 100, the L1 intercalation is
+    \emph{omitted} even if $\Phi \geq 1$, to correct over-accumulation of $\approx 0.2563$
+    days over 100 years.
+
+  \item[Rule L3 (Quad-Century Restoration)]
+    In years that are exact multiples of 400, the L2 omission is reversed and
+    the intercalation \emph{is} performed, correcting the residual $\approx 0.0256$
+    days per 400 years.
+\end{description}
+
+\subsection{Formal Leap Test}
+
+\begin{equation}
+\mathrm{IsLeap}(y) =
+\begin{cases}
+\text{true}  & \text{if } (y \bmod 400 = 0) \\
+\text{false} & \text{else if } (y \bmod 100 = 0) \\
+\text{true}  & \text{else if } \Phi(y) \geq 1 \\
+\text{false} & \text{otherwise}
+\end{cases}
+\label{eq:leap}
+\end{equation}
+
+\noindent where $\Phi(y) = \{(y-1) \times 1.2563\}$ (fractional part).
+
+Long-term drift under Rules L1--L3 is less than 0.00072~days per 10\,000~UBC years,
+equivalent to $\approx 62$~SI seconds --- well within the precision required for civil
+timekeeping over historical timescales relevant to the Republic of Binod, and consistent
+with the periodic-correction philosophy underlying Earth's own leap-second practice
+\cite{iers_leap}.
+
+% -------------------------------------------------------
+\section{Date Notation Standard}
+
+\subsection{Full Date Format}
+
+\begin{equation}
+\texttt{DD-MMM-Y[YYY]} \quad \text{e.g.,} \quad \texttt{01-ARD-1}
+\label{eq:notation}
+\end{equation}
+
+\begin{itemize}
+  \item \texttt{DD} --- two-digit day within month (01--28, or 29 for intercalary day)
+  \item \texttt{MMM} --- three-letter month abbreviation (Table~\ref{tab:months})
+  \item \texttt{Y[YYY]} --- year without leading zeros
+\end{itemize}
+
+\subsection{Numeric ISO-Compatible Format}
+
+For machine-readable interchange, following the structured, unambiguous date
+representation conventions of ISO~8601 \cite{iso8601}:
+
+\begin{equation}
+\texttt{UBCY-MM-DD} \quad \text{e.g.,} \quad \texttt{UBC0001-01-01}
+\label{eq:iso_notation}
+\end{equation}
+
+\subsection{Intercalary Day}
+
+When $\mathrm{IsLeap}(y) = \text{true}$, month Uthren (07) contains 29 days.
+The 29th day is denoted \texttt{29-UTH-y} or \texttt{UBCy-07-29} and is a mandatory
+public holiday designated \textbf{Synchrony Day} (\textit{Synchara}).
+
+% -------------------------------------------------------
+\section{Conversion Formulae: Gregorian $\leftrightarrow$ UBC}
+\label{sec:conversion}
+
+\subsection{Definitions}
+
+Let $J_{\oplus}(D)$ denote the standard astronomical Julian Date of a Gregorian
+civil date $D$, evaluated at 00:00~UTC unless a time of day is otherwise stated.
+The Julian Date of the Founding Epoch (23~April~2021, 06:00~UTC) is:
+
+\begin{equation}
+J_{\mathrm{FE}} = 2\,459\,327.75
+\label{eq:jfe}
+\end{equation}
+
+\subsection{Julian Date Convention}
+\label{sec:jdn_convention}
+
+To keep Eq.~\eqref{eq:jfe} and all subsequent conversions mutually consistent and
+reproducible, $J_{\oplus}(D)$ \textbf{must} be computed with the same convention used
+to derive $J_{\mathrm{FE}}$: the standard noon-referenced Julian Day Number
+$\mathrm{JDN}_{\mathrm{noon}}(D)$, given by the Fliegel--Van~Flandern algorithm for the
+proleptic Gregorian calendar, adjusted to the desired UTC time of day $h$ (in hours):
+
+\begin{equation}
+J_{\oplus}(D, h) = \mathrm{JDN}_{\mathrm{noon}}(D) - 0.5 + \frac{h}{24}
+\label{eq:jdn_convention}
+\end{equation}
+
+\noindent This is verified against the Founding Epoch: with
+$\mathrm{JDN}_{\mathrm{noon}}(\text{23 Apr 2021}) = 2\,459\,328$ and $h = 6$,
+Eq.~\eqref{eq:jdn_convention} gives $2\,459\,328 - 0.5 + 0.25 = 2\,459\,327.75 = J_{\mathrm{FE}}$,
+matching Eq.~\eqref{eq:jfe} exactly. For civil dates where no time of day is specified,
+$h = 0$ (UTC midnight) is used by convention. Any implementation of this standard
+\textbf{must} use Eq.~\eqref{eq:jdn_convention}; computing $J_{\oplus}(D)$ directly from
+$\mathrm{JDN}_{\mathrm{noon}}(D)$ without the $-0.5$-day offset silently introduces a
+half-day error that compounds through Eq.~\eqref{eq:delta_binod}, and was the source of
+the arithmetic errors corrected in this revision (see erratum notice above and
+Appendix~\ref{app:changelog}).
+
+The elapsed Earth-days since FE are:
+
+\begin{equation}
+\Delta_{\oplus}(D) = J_{\oplus}(D) - J_{\mathrm{FE}}
+\label{eq:delta_earth}
+\end{equation}
+
+\subsection{Earth Days to Binodian Civil Days}
+
+Because one Binodian civil day $= T_{\mathrm{B}} = 86\,736$~s and one Earth day
+$= T_{\oplus} = 86\,400$~s:
+
+\begin{equation}
+\Delta_{\mathrm{B}}(D) = \Delta_{\oplus}(D) \times \mathrm{TSI}
+                       = \Delta_{\oplus}(D) \times \frac{86\,400}{86\,736}
+\label{eq:delta_binod}
+\end{equation}
+
+\subsection{Binodian Civil Days to UBC Date}
+
+Let $N = \lfloor \Delta_{\mathrm{B}} \rfloor + 1$ (BJDN, 1-indexed).  To find the
+UBC year, month, and day from $N$:
+
+\begin{algorithm}[!t]
+\caption{BJDN to UBC Date}
+\label{alg:bjdn2ubc}
+\begin{algorithmic}[1]
+\STATE $y \leftarrow 1$; $\;r \leftarrow N - 1$
+\WHILE{$r \geq \mathrm{DaysInYear}(y)$}
+  \STATE $r \leftarrow r - \mathrm{DaysInYear}(y)$
+  \STATE $y \leftarrow y + 1$
+\ENDWHILE
+\STATE $m \leftarrow 1$
+\WHILE{$r \geq \mathrm{DaysInMonth}(y,m)$}
+  \STATE $r \leftarrow r - \mathrm{DaysInMonth}(y,m)$
+  \STATE $m \leftarrow m + 1$
+\ENDWHILE
+\STATE $d \leftarrow r + 1$
+\RETURN $(y,\,m,\,d)$
+\end{algorithmic}
+\end{algorithm}
+
+\noindent where:
+
+\begin{equation}
+\mathrm{DaysInYear}(y) =
+\begin{cases}
+365 & \text{if } \mathrm{IsLeap}(y) \\
+364 & \text{otherwise}
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\mathrm{DaysInMonth}(y,m) =
+\begin{cases}
+29 & \text{if } m = 7 \text{ and } \mathrm{IsLeap}(y) \\
+28 & \text{otherwise}
+\end{cases}
+\end{equation}
+
+% -------------------------------------------------------
+\section{Worked Conversion Examples}
+\label{sec:worked_examples}
+
+All examples use $\mathrm{TSI} = 86\,400 / 86\,736$ and the Julian Date convention of
+Eq.~\eqref{eq:jdn_convention} (Section~\ref{sec:jdn_convention}). Non-epoch civil dates
+are evaluated at $h=0$ (UTC midnight).
+
+\subsection{Example 1 --- Founding Epoch: 23 April 2021, 06:00 UTC}
+
+\begin{align}
+J_{\oplus} &= J_{\mathrm{FE}} = 2\,459\,327.75 \notag \\
+\Delta_{\oplus} &= 0 \text{ Earth days (by definition)} \notag \\
+\Delta_{\mathrm{B}} &= 0 \times \mathrm{TSI} = 0 \notag \\
+N &= \lfloor 0 \rfloor + 1 = 1 \notag \\
+\Rightarrow & \quad \textbf{01-ARD-1} \quad (\text{UBC0001-01-01})
+\end{align}
+
+\noindent \textit{This is Solday, the first day of the Republic.}
+
+\subsection{Example 2 --- 1 January 2023, 00:00 UTC}
+
+\begin{align}
+\mathrm{JDN}_{\mathrm{noon}}(1\;\text{Jan}\;2023) &= 2\,459\,946 \notag \\
+J_{\oplus} &= 2\,459\,946 - 0.5 = 2\,459\,945.5 \notag \\
+\Delta_{\oplus} &= 2\,459\,945.5 - 2\,459\,327.75 \notag \\
+             &= 617.75 \text{ Earth days} \notag \\
+\Delta_{\mathrm{B}} &= 617.75 \times \frac{86\,400}{86\,736} \notag \\
+             &\approx 615.357 \text{ Binodian days} \notag \\
+N &= \lfloor 615.357 \rfloor + 1 = 616
+\end{align}
+
+Applying Algorithm~\ref{alg:bjdn2ubc} with leap-year check:
+Year~1 ($\Phi(1)=0 < 1$, common) $= 364$~days; $r = 615 - 364 = 251$.
+Year~2: $\Phi(2) = \{1.2563\} = 0.2563 < 1$ (common, 364~days); $251 < 364$, so $y = 2$.
+Month~1--8: $8 \times 28 = 224$~days; $251 - 224 = 27$; month~9 (NAL), day $27+1 = 28$.
+
+\begin{equation}
+1\;\text{January}\;2023 \;\longrightarrow\; \textbf{28-NAL-2} \quad (\text{UBC0002-09-28})
+\end{equation}
+
+\subsection{Example 3 --- 27 June 2026, 00:00 UTC}
+
+\begin{align}
+\mathrm{JDN}_{\mathrm{noon}}(27\;\text{Jun}\;2026) &= 2\,461\,219 \notag \\
+J_{\oplus} &= 2\,461\,219 - 0.5 = 2\,461\,218.5 \notag \\
+\Delta_{\oplus} &= 2\,461\,218.5 - 2\,459\,327.75 \notag \\
+             &= 1\,890.75 \text{ Earth days} \notag \\
+\Delta_{\mathrm{B}} &= 1\,890.75 \times \frac{86\,400}{86\,736} \notag \\
+             &\approx 1\,883.426 \text{ Binodian days} \notag \\
+N &= \lfloor 1\,883.426 \rfloor + 1 = 1884
+\end{align}
+
+Year~1 (364) + Year~2 (364) + Year~3 (364) = 1092; Year~4: $\Phi(4) = \{3 \times 1.2563\}
+= \{3.7689\} = 0.7689 < 1$ (common), cumulative $= 1456$. Year~5: $\Phi(5) =
+\{4 \times 1.2563\} = \{5.0252\} = 0.0252 < 1$ (common, 364~days), cumulative $= 1820$.
+$r = 1883 - 1820 = 63$; Year~6: $\Phi(6) = \{5 \times 1.2563\} = \{6.2815\} = 0.2815 < 1$
+(common); $63 < 364$, so $y = 6$.
+Month: $\lfloor 63/28 \rfloor = 2$ full months (56~days); month~3 (SEL), day $63 - 56 + 1 = 8$.
+
+\begin{equation}
+27\;\text{June}\;2026 \;\longrightarrow\; \textbf{08-SEL-6} \quad (\text{UBC0006-03-08})
+\end{equation}
+
+\subsection{Example 4 --- 1 July 2026, 00:00 UTC}
+
+\begin{align}
+\mathrm{JDN}_{\mathrm{noon}}(1\;\text{Jul}\;2026) &= 2\,461\,223 \notag \\
+J_{\oplus} &= 2\,461\,223 - 0.5 = 2\,461\,222.5 \notag \\
+\Delta_{\oplus} &= 2\,461\,222.5 - 2\,459\,327.75 \notag \\
+             &= 1\,894.75 \text{ Earth days} \notag \\
+\Delta_{\mathrm{B}} &= 1\,894.75 \times \frac{86\,400}{86\,736} \notag \\
+             &\approx 1\,887.410 \text{ Binodian days} \notag \\
+N &= \lfloor 1\,887.410 \rfloor + 1 = 1888
+\end{align}
+
+$r = 1887 - 1820 = 67$ (Years~1--5 as in Example~3, cumulative 1820); $y = 6$.
+Month: $\lfloor 67/28 \rfloor = 2$ (56~days); month~3 (SEL), day $67 - 56 + 1 = 12$.
+
+\begin{equation}
+1\;\text{July}\;2026 \;\longrightarrow\; \textbf{12-SEL-6} \quad (\text{UBC0006-03-12})
+\end{equation}
+
+% -------------------------------------------------------
+\section{Long-Term Synchronization Mechanism}
+
+The UBC remains synchronized over centuries through two mechanisms:
+
+\subsubsection{Atomic Reference Clock Network}
+
+The CSCTS operates a network of four caesium-fountain atomic clocks distributed across
+Binodian administrative territory.  Every 365~Binodian civil days, the clocks are
+cross-referenced and the TSI is re-evaluated.  A revised TSI may be adopted by a
+two-thirds Committee vote, but any revision applies \emph{prospectively only} and is
+recorded in the official TSI Register (CSCTS-TR), ensuring historical dates remain
+permanently fixed.
+
+\subsubsection{Secular TSI Drift Correction}
+
+Theoretical models predict that $T_{\mathrm{B}}$ increases at a rate of
+$\dot{T}_{\mathrm{B}} = +0.0012$~s/century due to tidal deceleration of Binod's rotation.
+The Committee will publish a revised TSI value every 100~UBC years (first revision: Year~100).
+The accumulated drift over 100 years is $\approx 0.06$~s/day, totalling $\approx 6$~civil
+days per 100 years --- well within the precision buffer of the L2/L3 leap rules.
+
+% -------------------------------------------------------
+\section{Civil Administration Guidelines}
+
+\subsection{Official Transition Date}
+
+All Binodian government documents issued on or after \textbf{01-ARD-5 (UBC0005-01-01)}
+must use UBC notation as the primary date format.  Gregorian dates may appear in
+parentheses as secondary notation during the 10-year transition period (UBC~5--15).
+
+\subsection{Historical Documents}
+
+Pre-Founding-Epoch dates shall be expressed using the prefix ``\textbf{pFE}''
+(pre-Founding Epoch) followed by the Gregorian year in parentheses.  Example:
+\texttt{pFE (2019-CE)}.
+
+\subsection{Cross-Dimensional Treaties}
+
+When Binodian dates appear in legal instruments with Earth-jurisdiction parties, both
+UBC and Gregorian dates must be stated.  The Gregorian date shall be computed using the
+inverse of Eq.~\eqref{eq:delta_binod} and recorded to the nearest Earth day.
+
+% -------------------------------------------------------
+\section{Summary of Constants}
+
+\begin{table}[!t]
+\centering
+\caption{UBC Fundamental Constants (Version 1.0.1)}
+\label{tab:constants}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Symbol} & \textbf{Value} & \textbf{Description} \\
+\midrule
+$T_{\oplus}$     & 86\,400 s (exact)         & Mean Earth civil day \\
+$T_{\mathrm{B}}$ & 86\,736 s                 & Mean Binodian civil day \\
+TSI              & $\approx 0.996\,12$       & Temporal Synchronization Index \\
+$\mathcal{Y}_{\mathrm{B}}$ & 365.2563 B-days & Binodian tropical year \\
+$J_{\mathrm{FE}}$ & 2\,459\,327.75 (JDN)    & FE Julian Day Number \\
+$\delta$         & 1.2563 day/year           & Annual leap accumulation rate \\
+$D_{\mathrm{common}}$ & 364 days             & Common UBC year length \\
+$D_{\mathrm{leap}}$   & 365 days             & Leap UBC year length \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% -------------------------------------------------------
+\section{Conclusion}
+
+The Unified Binod Calendar provides a scientifically rigorous, administratively
+practical, and historically stable timekeeping system for the Republic of Binod.
+By anchoring to the Founding Epoch of 23~April~2021~CE and computing all dates
+through the empirically measured Temporal Synchronization Index, the UBC ensures
+that every Binodian date corresponds to a unique, unambiguous moment in time.
+The 13-month, 28-day-per-month structure eliminates intra-year calendar irregularities,
+while the three-tier leap scheme guarantees sub-day accuracy over 10\,000~UBC years.
+The Committee recommends immediate adoption by all branches of Binodian government
+and invites external peer review from any institution operating under a recognized
+civil calendar standard.
+
+\appendices
+
+\section{Conversion Reference Table}
+\label{app:conversion_table}
+
+\begin{table}[!t]
+\centering
+\caption{Selected Earth--UBC Conversion Reference (regenerated from
+Algorithm~\ref{alg:bjdn2ubc}, v1.0.1)}
+\label{tab:conversions}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Gregorian Date} & \textbf{UBC Date} & \textbf{Significance} \\
+\midrule
+23 Apr 2021, 06:00 UTC & 01-ARD-1  (UBC0001-01-01) & Founding Epoch \\
+01 Jan 2023, 00:00 UTC & 28-NAL-2  (UBC0002-09-28) & New Gregorian Year \\
+27 Jun 2026, 00:00 UTC & 08-SEL-6  (UBC0006-03-08) & Present (near) \\
+01 Jul 2026, 00:00 UTC & 12-SEL-6  (UBC0006-03-12) & Present (near) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Changelog}
+\label{app:changelog}
+
+\begin{description}
+  \item[\textbf{v1.0.0} (04-KYT-5):] Initial ratified standard.
+  \item[\textbf{v1.0.1} (01-SEL-6):] Corrected the four worked conversion
+    examples in Section~\ref{sec:worked_examples} and the reference table in
+    Appendix~\ref{app:conversion_table}, which had computed $J_{\oplus}(D)$ for
+    non-epoch dates inconsistently with the definition of $J_{\mathrm{FE}}$
+    in Eq.~\eqref{eq:jfe}. Added Section~\ref{sec:jdn_convention}, which makes the
+    Julian Date convention, Eq.~\eqref{eq:jdn_convention}, explicit and normative, so
+    that $J_{\oplus}(D)$ is unambiguous and reproducible for any implementer. No
+    change was made to the epoch, calendar structure, leap-correction rules, TSI
+    value, or the conversion algorithm (Algorithm~\ref{alg:bjdn2ubc}) --- all of
+    which were correct in v1.0.0. Reference implementations of this standard should
+    validate against Table~\ref{tab:conversions} and must not hard-code offsets
+    reproducing the superseded v1.0.0 example values.
+\end{description}
+
+\section{Ratification Record}
+
+This standard was ratified by the following CSCTS sub-committees:
+
+\begin{itemize}
+  \item Sub-Committee on Orbital Mechanics --- unanimous approval
+  \item Sub-Committee on Civil Administration --- unanimous approval
+  \item Sub-Committee on Historical Records --- unanimous approval
+  \item Sub-Committee on Cross-Dimensional Treaty Law --- approved with notation
+\end{itemize}
+
+\noindent \textbf{Effective date:} 04-KYT-5 (UBC0005-04-04)\\
+\textbf{Next scheduled review:} 01-ARD-15 (UBC0015-01-01)
+
+\section{Active Temporal Flow --- Gameplay Synchronization Policy}
+\label{app:atf_policy}
+
+\textit{This appendix is informative, not normative. It documents the Government's
+Temporal Synchronization Policy governing the live gameplay-clock display operated
+by BIASR and does not alter, in any way, the ratified Unified Binod Calendar defined
+in the body of this standard. As established in Section~II-A, Minecraft's diurnal
+cycle remains a purely astronomical curiosity with no civil-timekeeping standing;
+the policy below governs only a simulated in-game clock layered on top of the
+civil calendar, for gameplay-synchronization purposes.}
+
+\subsection{Official Rule}
+
+The Binod World becomes temporally active daily from 20:00 to 03:00 India Standard
+Time (Asia/Kolkata), designated \textbf{Active Temporal Flow (ATF)}. During this
+window, the simulated Minecraft world clock advances automatically; outside it, the
+clock freezes completely. This schedule is fixed by government policy and does not
+check whether the Minecraft server is running or whether any player is online. At
+20:00 IST the following day, the simulation resumes automatically from the exact
+point where it stopped, with no manual reset.
+
+\subsection{Minecraft Time Scale}
+
+The simulation uses the official Minecraft diurnal scale \cite{minecraft_wiki_day}:
+one Minecraft day equals 24\,000 game-ticks, equal to 20 real-world minutes
+(1\,200~SI seconds); one Minecraft hour equals 1\,000 ticks, equal to 50 real-world
+seconds. Run continuously, 72 Minecraft days would elapse per real-world day; because
+ATF restricts simulation to a 420-real-minute nightly window (20:00--03:00 IST),
+exactly $420 / 20 = 21$ Minecraft days elapse per nightly session.
+
+\subsection{Calendar Integration}
+
+The Unified Binod Calendar (UBC) remains the sole official legal calendar of the
+Republic of Binod. The BIASR website additionally displays a Minecraft World Time
+panel, distinct from the UBC readout, showing: the Minecraft Day Number; Minecraft
+Time (HH:MM); the current diurnal phase (Sunrise, Day, Sunset, or Night); the ATF
+status (ACTIVE or PAUSED); and the time remaining until the next simulated
+Minecraft day.
+
+\subsection{Persistence}
+
+Implementations store the current Minecraft Day Number, the current Minecraft tick
+(0--23\,999), and the timestamp of the last synchronization. Because this state is a
+pure deterministic function of real elapsed ATF-active time since the Founding Epoch,
+it is fully recomputed on every page load rather than replayed from storage; the
+stored values are retained only as a diagnostic record and always match the
+recomputed state exactly, so a page refresh restores the identical simulation state
+with no drift.
+
+% -------------------------------------------------------
+\begin{thebibliography}{9}
+
+\bibitem{minecraft_wiki_day}
+Minecraft Wiki Contributors,
+``Day-Night Cycle,''
+\textit{Official Minecraft Wiki},
+Fandom, Inc., 2023.
+[Online]. Available: \url{https://minecraft.wiki/w/Daylight_cycle}
+
+\bibitem{iau_timekeeping}
+International Astronomical Union,
+``Recommendations Concerning Astronomical Constants,''
+\textit{IAU 2012 Resolution B2}, IAU, 2012.
+
+\bibitem{iso8601}
+International Organization for Standardization,
+\textit{ISO 8601:2019 Date and Time --- Representations for Information Interchange},
+ISO, Geneva, 2019.
+
+\bibitem{iers_leap}
+International Earth Rotation and Reference Systems Service,
+``Leap Seconds,''
+\textit{IERS Bulletin C}, IERS, Paris, 2024.
+
+\bibitem{cscts_r00}
+Chief Scientific Committee on Temporal Standards,
+``CSCTS Report 00: Reconstruction of the Founding Epoch,''
+\textit{Binodian Journal of Astronomical Science}, vol.~1, no.~1, pp.~1--14, UBC~1.
+
+\bibitem{cscts_r03}
+Chief Scientific Committee on Temporal Standards,
+``CSCTS Report 03: Measurement of the Binodian Tropical Year,''
+\textit{Binodian Journal of Astronomical Science}, vol.~3, no.~2, pp.~45--62, UBC~3.
+
+\end{thebibliography}
+
+\vfill
+\noindent\rule{\columnwidth}{0.4pt}\\[2pt]
+{\footnotesize
+\textbf{Document identifier:} UBC-STD-2026-001 \quad
+\textbf{Version:} 1.0.1 \quad
+\textbf{Supersedes:} Version 1.0.0 (04-KYT-5) \quad
+\textbf{Status:} Ratified \\
+\textbf{Issuing body:} Chief Scientific Committee on Temporal Standards (CSCTS),
+Republic of Binod \\
+\textbf{Classification:} Public Domain --- freely reproducible with attribution \\
+\copyright~Republic of Binod, UBC~6.  All rights reserved under Binodian IP Statute 3.1.
+}
+
+\end{document}

@@ -80,6 +80,25 @@
       </div>
     </div>
 
+    <!-- Minecraft World Time (Government Temporal Synchronization Policy) -->
+    <div class="card" style="margin-bottom:24px;">
+      <div class="label">Minecraft World Time</div>
+      <p style="color:var(--text-muted); font-size:.85rem; margin:2px 0 18px;">
+        Simulated in-game clock, gated by Active Temporal Flow (20:00 – 03:00 IST) regardless of
+        whether the Minecraft server is running or any player is online. This is a gameplay
+        simulation layer only and does not affect the Official UBC Date above.
+      </p>
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px,1fr));">
+        <div><div class="label">Earth Time (IST)</div><div class="value mono" style="font-size:1.1rem;" id="mc-earth-time">—</div></div>
+        <div><div class="label">Temporal Flow</div><div id="mc-status"></div></div>
+        <div><div class="label">Minecraft Day</div><div class="value" id="mc-day">—</div></div>
+        <div><div class="label">Minecraft Time</div><div class="value mono" id="mc-time">—</div></div>
+        <div><div class="label">Current Phase</div><div class="value" id="mc-phase">—</div></div>
+        <div><div class="label">Next Day In</div><div class="value mono" id="mc-next-day">—</div></div>
+        <div><div class="label">UBC Date</div><div class="value" id="mc-ubc-date">—</div></div>
+      </div>
+    </div>
+
     <div class="card-grid">
       <div class="card"><div class="label">Current Month</div><div class="value" id="stat-month">—</div></div>
       <div class="card"><div class="label">Current Year</div><div class="value" id="stat-year">—</div></div>
@@ -100,11 +119,13 @@
       <h2>Active Temporal Flow (ATF)</h2>
     </div>
     <div class="note">
-      The Unified Binod Calendar advances only during Active Temporal Flow (ATF), representing the
-      synchronization between Earth's observers and the Binod world. When no official gameplay
-      session is active, civil time is suspended until synchronization resumes.
-      Binodian Civil Time advances only during the official gameplay window (20:00 – 03:00 IST) and
-      is frozen at all other hours. It resumes automatically at 20:00 IST with no manual reset.
+      Every day, the Binod World becomes temporally active from 20:00 IST (Asia/Kolkata) until
+      03:00 IST. During this window the website automatically advances the simulated Minecraft
+      world clock; outside it, the clock pauses completely. This schedule is fixed by government
+      policy and does not check whether Minecraft is open or whether anyone is playing — it
+      resumes automatically at 20:00 IST with no manual reset. The Live UBC Time clock above is
+      governed by this same window, but the Official UBC Date is never gated by it — it advances
+      continuously in real time regardless of Active Temporal Flow.
     </div>
   </div>
 </section>
@@ -120,9 +141,18 @@
 <script src="js/main.js"></script>
 <script src="js/calendar-engine.js"></script>
 <script src="js/mini-calendar.js"></script>
+<script src="js/minecraft-time.js"></script>
 <script>
 (function () {
   const el = (id) => document.getElementById(id);
+  const pad2 = (n) => String(n).padStart(2, '0');
+
+  function formatCountdown(totalSeconds) {
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+    return `${pad2(h)}:${pad2(m)}:${pad2(s)}`;
+  }
 
   CalendarEngine.init((state) => {
     const u = state.ubc;
@@ -143,6 +173,21 @@
     el('stat-epoch').textContent = CalendarEngine.EPOCH_LABEL;
     el('stat-days').textContent = u.N.toLocaleString();
     el('stat-window').textContent = CalendarEngine.WINDOW_LABEL;
+
+    const mc = MinecraftTime.computeMinecraftState(state.nowUtcMs);
+    el('mc-earth-time').textContent = `${state.ist.time} IST`;
+    el('mc-status').innerHTML = state.active
+      ? '<span class="status-pill active"><span class="status-dot"></span>ACTIVE</span>'
+      : '<span class="status-pill paused"><span class="status-dot"></span>PAUSED</span>';
+    el('mc-day').textContent = `Day ${mc.dayNumber.toLocaleString()}`;
+    el('mc-time').textContent = mc.time;
+    el('mc-phase').textContent = mc.phase;
+    el('mc-next-day').textContent = formatCountdown(mc.secondsUntilNextDay);
+    el('mc-ubc-date').textContent = u.fullDate;
+
+    document.querySelectorAll('.mini-cal-card').forEach((card) => {
+      if (card._mcUpdate) card._mcUpdate(u);
+    });
   });
 })();
 </script>

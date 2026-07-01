@@ -163,7 +163,7 @@
     MONTHS, WEEKDAYS, TSI,
     WINDOW_LABEL: '20:00 - 03:00 IST',
     EPOCH_LABEL: '01-ARD-1 (UBC0001-01-01) — 23 April 2021, 06:00:00 UTC',
-    isLeapYear, daysInMonth, daysInYear, computeUBCDate,
+    isLeapYear, daysInMonth, daysInYear, computeUBCDate, computeBankedMs,
 
     computeState() {
       const nowUtcMs = Date.now();
