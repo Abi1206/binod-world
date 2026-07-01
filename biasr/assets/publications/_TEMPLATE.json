@@ -1,6 +1,6 @@
 {
   "id": "BIASR-YYYY-NNN",
-  "file": "BIASR-YYYY-NNN.pdf",
+  "file": "BIASR_YYYY_NNN.pdf",
   "title": "",
   "authors": [""],
   "institution": "Binodian Institute for Astronomical and Space Research",
@@ -9,6 +9,8 @@
   "date": "YYYY-MM-DD",
   "volume": 1,
   "issue": 1,
-  "doi": "10.5000/biasr.YYYY.NNN",
+  "identifier": "UBC-STD-YYYY-NNN",
+  "issn": "",
+  "citation": "",
   "tags": []
 }

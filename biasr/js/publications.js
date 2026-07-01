@@ -27,7 +27,7 @@
         <h3>${p.title}</h3>
         <div class="pub-meta">
           ${p.authors.join(', ')} &middot; ${p.institution} &middot; ${p.division}<br>
-          Published ${p.date} &middot; Vol. ${p.volume}, Issue ${p.issue} &middot; DOI: ${p.doi}
+          Published ${p.date} &middot; Vol. ${p.volume}, Issue ${p.issue} &middot; Identifier: ${p.identifier}${p.issn ? ` &middot; ISSN: ${p.issn}` : ''}
         </div>
         <p class="pub-abstract">${p.abstract}</p>
         <div class="pub-tags">${tags}</div>
