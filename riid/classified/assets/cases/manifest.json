@@ -1,0 +1,41 @@
+[
+  {
+    "caseId": "RIID-C-2026-0011",
+    "operationName": "Operation Ashfall",
+    "classification": "SECRET",
+    "threatLevel": "ELEVATED",
+    "status": "ACTIVE",
+    "dateOpened": "2026-06-20",
+    "leadInvestigator": "Agent Vantablack",
+    "assignedAgents": ["Agent Meridian", "Agent Coldwire"],
+    "evidence": [
+      "Three disarmed redstone-triggered incendiary devices (recovered under Operation Black Ash, cross-referenced RIID-2026-0004)",
+      "Partial supply manifest recovered from a Port Mafia-adjacent trade route",
+      "Digital trace linking device components to an unregistered redstone workshop"
+    ],
+    "witnesses": [
+      "W-1 — Depot foreman, corroborated device placement timeline"
+    ],
+    "suspects": [
+      "S-1 — Unregistered redstone fabricator, identity withheld pending arrest"
+    ],
+    "timeline": [
+      { "date": "2026-06-19", "event": "Operation Black Ash findings approved for partial public release; classified follow-up thread opened same day." },
+      { "date": "2026-06-20", "event": "RIID-C-2026-0011 opened to identify the fabricator and any additional device caches." },
+      { "date": "2026-06-27", "event": "Digital trace narrows the workshop to a single unregistered location; surveillance authorized." }
+    ],
+    "documents": [
+      "Supply manifest fragment (partial, chain-of-custody logged)",
+      "Device teardown report — Evidence Lab"
+    ],
+    "images": [
+      "Device teardown photography set (4 images, Evidence Lab)"
+    ],
+    "audio": [],
+    "video": [
+      "Depot perimeter surveillance clip, 19 June 2026"
+    ],
+    "finalReport": "PENDING — investigation ongoing. Surveillance of the identified workshop is active; no arrests have been made.",
+    "distribution": "World President · RIID Director · Lead Investigator"
+  }
+]

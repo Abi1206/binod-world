@@ -1,0 +1,221 @@
+/* RIID — Classified Intelligence Network
+   Loaded together with ../../css/style.css (shares --cyan/--red/--mono/etc.
+   and the .cls-badge classification classes). This file adds the
+   portal-only chrome: restriction banner, login screen, dashboard,
+   document viewer, and vault/map placeholders.
+   NOT FOR PUBLIC DISTRIBUTION — INTERNAL PORTAL ONLY (roleplay flavor). */
+
+body { background: #030405; }
+
+/* ─── RESTRICTION BANNER ─────────────────────────────────────────── */
+.rc-topbar {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  padding: 9px 24px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────────── */
+.rc-header {
+  background: var(--bg-elevated);
+  border-bottom: 2px solid var(--cyan);
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.rc-header-seal { width: 44px; height: 44px; opacity: 0.85; }
+.rc-header-identity h1 { font-family: var(--display); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.03em; }
+.rc-header-identity p { font-family: var(--mono); font-size: 0.66rem; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
+.rc-header-agent { margin-left: auto; display: flex; align-items: center; gap: 14px; font-family: var(--mono); font-size: 0.76rem; color: var(--text-dim); }
+.rc-header-agent a { color: var(--red); text-decoration: none; }
+.rc-header-agent a:hover { color: #ff8080; }
+
+/* ─── NAV ────────────────────────────────────────────────────────── */
+.rc-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; overflow-x: auto; }
+.rc-nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 13px 16px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.rc-nav a:hover, .rc-nav a.active { color: var(--cyan-bright); border-bottom-color: var(--cyan); }
+
+/* ─── LOGIN SCREEN ───────────────────────────────────────────────── */
+.rc-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+}
+.rc-login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border-cyan);
+  padding: 40px 36px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.rc-login-logo { width: 64px; height: 64px; margin: 0 auto 18px; display: block; }
+.rc-login-logo-fallback {
+  width: 64px; height: 64px; margin: 0 auto 18px;
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 700; color: var(--cyan);
+}
+.rc-login-title { text-align: center; font-family: var(--display); font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+.rc-login-sub { text-align: center; font-family: var(--mono); font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 26px; }
+.rc-field { margin-bottom: 16px; }
+.rc-field label { display: block; font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.rc-field input {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 11px 14px;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  outline: none;
+}
+.rc-field input:focus { border-color: var(--cyan); box-shadow: 0 0 0 2px var(--cyan-glow); }
+.rc-login-error {
+  display: none;
+  background: var(--red-dim);
+  border-left: 3px solid var(--red);
+  color: #ffbdbd;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+.rc-login-error.show { display: block; }
+.rc-login-warning {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.8;
+}
+.rc-login-warning strong { color: var(--red); display: block; letter-spacing: 0.1em; margin-bottom: 6px; }
+
+/* ─── DASHBOARD ──────────────────────────────────────────────────── */
+.rc-main { max-width: 1240px; margin: 0 auto; padding: 40px 24px 72px; }
+.rc-welcome { font-family: var(--display); font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+.rc-welcome-sub { font-family: var(--mono); font-size: 0.78rem; color: var(--text-dim); margin-bottom: 32px; }
+.rc-card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.rc-dash-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--cyan);
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.15s;
+}
+.rc-dash-card:hover { border-top-color: var(--cyan-bright); transform: translateY(-2px); box-shadow: var(--shadow); }
+.rc-dash-card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+.rc-dash-card-title { font-family: var(--display); font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+.rc-dash-card-desc { font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; margin-bottom: 10px; }
+.rc-dash-card-count { font-family: var(--mono); font-size: 1.4rem; color: var(--cyan-bright); }
+
+/* ─── DOCUMENT VIEWER (case file) ────────────────────────────────── */
+.rc-doc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--red);
+  padding: 30px 32px;
+}
+.rc-doc-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding-bottom: 18px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+.rc-doc-id { font-family: var(--mono); font-size: 0.68rem; color: var(--text-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+.rc-doc-title { font-family: var(--display); font-size: 1.3rem; font-weight: 700; }
+.rc-meta { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 26px; font-size: 0.78rem; }
+.rc-meta-cell { background: var(--bg-elevated); padding: 10px 14px; }
+.rc-meta-cell label { display: block; color: var(--text-faint); text-transform: uppercase; font-size: 0.6rem; letter-spacing: 0.1em; margin-bottom: 4px; font-family: var(--mono); }
+.rc-meta-cell span { color: var(--text); font-weight: 600; }
+.rc-meta-cell span.active { color: var(--amber); }
+.rc-meta-cell span.pending { color: var(--text-dim); }
+.rc-body h4 { color: var(--cyan); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 22px 0 10px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+.rc-body p { font-size: 0.87rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 10px; }
+.rc-body ul { padding-left: 20px; margin-bottom: 10px; }
+.rc-body li { font-size: 0.87rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 6px; }
+.rc-timeline-list { list-style: none; padding-left: 0 !important; }
+.rc-timeline-list li { border-left: 2px solid var(--cyan); padding: 2px 0 10px 16px; margin-bottom: 0 !important; }
+.rc-timeline-list li .rc-tdate { display: block; font-family: var(--mono); font-size: 0.72rem; color: var(--cyan); margin-bottom: 2px; }
+
+/* ─── EVIDENCE VAULT ─────────────────────────────────────────────── */
+.rc-vault-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.rc-vault-item { background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+.rc-vault-thumb { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; background: repeating-linear-gradient(45deg, var(--bg-elevated), var(--bg-elevated) 10px, var(--surface-2) 10px, var(--surface-2) 20px); color: var(--text-faint); }
+.rc-vault-body { padding: 14px 16px; }
+.rc-vault-type { font-family: var(--mono); font-size: 0.6rem; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+.rc-vault-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; }
+
+/* ─── INTELLIGENCE MAP PLACEHOLDER ──────────────────────────────── */
+.rc-map-frame {
+  position: relative;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-cyan);
+  height: 440px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rc-map-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(31,214,201,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,214,201,0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.rc-map-label { position: relative; z-index: 2; text-align: center; font-family: var(--mono); color: var(--text-faint); font-size: 0.85rem; max-width: 400px; }
+.rc-layer-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+.rc-layer-chip {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  border: 1px solid var(--border-cyan);
+  padding: 7px 14px;
+  cursor: default;
+  user-select: none;
+}
+.rc-layer-chip.on { color: var(--cyan-bright); border-color: var(--cyan); background: var(--cyan-glow); }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────── */
+.rc-footer { background: var(--bg-elevated); border-top: 2px solid var(--red); padding: 22px 32px; text-align: center; font-family: var(--mono); font-size: 0.66rem; color: var(--text-faint); letter-spacing: 0.05em; line-height: 1.8; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .rc-card-grid { grid-template-columns: repeat(2, 1fr); }
+  .rc-vault-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .rc-header { padding: 14px 18px; flex-wrap: wrap; }
+  .rc-nav { padding: 0 18px; }
+  .rc-main { padding: 28px 18px 48px; }
+  .rc-card-grid { grid-template-columns: 1fr; }
+  .rc-vault-grid { grid-template-columns: 1fr; }
+  .rc-doc { padding: 22px 18px; }
+  .rc-doc-header { flex-direction: column; }
+}

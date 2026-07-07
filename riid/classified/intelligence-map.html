@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intelligence Map — RIID Classified Intelligence Network</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/classified.css" />
+  <script src="js/auth.js"></script>
+</head>
+<body>
+
+  <div class="rc-topbar">⚠ CLASSIFIED — RESTRICTED ACCESS — ALL ACCESS IS LOGGED ⚠</div>
+
+  <header class="rc-header">
+    <img src="../assets/images/logo.png" alt="RIID Seal" class="rc-header-seal" onerror="this.style.display='none'" />
+    <div class="rc-header-identity">
+      <h1>RIID Classified Intelligence Network</h1>
+      <p>Internal Access Only</p>
+    </div>
+    <div class="rc-header-agent">
+      <span>Agent: <strong style="color: var(--cyan);">BINOD</strong></span>
+      <a href="#" data-logout>Log Out ⏻</a>
+    </div>
+  </header>
+
+  <nav class="rc-nav">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="case-file.html">Case Files</a>
+    <a href="intelligence-map.html" class="active">Intelligence Map</a>
+    <a href="evidence-vault.html">Evidence Vault</a>
+    <a href="../index.html" style="margin-left:auto; color: var(--text-faint);">← Public Portal</a>
+  </nav>
+
+  <main class="rc-main">
+    <h2 class="rc-welcome" style="font-size: 1.4rem;">Intelligence Map</h2>
+    <p class="rc-welcome-sub">Interactive Minecraft world map — layer selection below.</p>
+
+    <div class="rc-layer-chips">
+      <span class="rc-layer-chip on">Nations</span>
+      <span class="rc-layer-chip on">Capitals</span>
+      <span class="rc-layer-chip">Crime Scenes</span>
+      <span class="rc-layer-chip">Safe Houses</span>
+      <span class="rc-layer-chip">Military Zones</span>
+      <span class="rc-layer-chip">BIASR Facilities</span>
+      <span class="rc-layer-chip">Government Buildings</span>
+    </div>
+
+    <div class="rc-map-frame">
+      <div class="rc-map-grid"></div>
+      <div class="rc-map-label">
+        <div style="font-size: 2rem; margin-bottom: 10px;">🗺</div>
+        Live interactive world map integration is pending world activation.<br />
+        Layers shown above reflect the planned data model.
+      </div>
+    </div>
+  </main>
+
+  <footer class="rc-footer">
+    <p>RIID CLASSIFIED INTELLIGENCE NETWORK &nbsp;·&nbsp; RESTRICTED DISTRIBUTION &nbsp;·&nbsp; NOT FOR PUBLIC RELEASE</p>
+    <p>This page is not indexed by search engines and does not appear in public navigation. Direct URL access only.</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

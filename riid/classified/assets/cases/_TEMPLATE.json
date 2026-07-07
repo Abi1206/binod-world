@@ -1,0 +1,30 @@
+{
+  "_INSTRUCTIONS": "This file is a usage guide — do NOT add it to manifest.json",
+
+  "_MANIFEST_ENTRY_FORMAT": {
+    "caseId": "RIID-C-2026-NNNN",
+    "operationName": "Operation Codename",
+    "classification": "SECRET",
+    "threatLevel": "ELEVATED",
+    "status": "ACTIVE",
+    "dateOpened": "2026-01-01",
+    "leadInvestigator": "Agent Callsign",
+    "assignedAgents": ["Agent Callsign 2", "Agent Callsign 3"],
+    "evidence": ["Description of physical/digital evidence item"],
+    "witnesses": ["Witness designation or redacted reference"],
+    "suspects": ["Suspect designation or redacted reference"],
+    "timeline": [
+      { "date": "2026-01-01", "event": "What happened on this date." }
+    ],
+    "documents": ["Document title or reference number"],
+    "images": ["Description of an image on file"],
+    "audio": ["Description of an audio log on file"],
+    "video": ["Description of a video file on file"],
+    "finalReport": "Leave as 'PENDING — investigation ongoing.' until the case is closed.",
+    "distribution": "World President · RIID Director"
+  },
+
+  "_CLASSIFICATION_LEVELS": ["PUBLIC", "RESTRICTED", "CONFIDENTIAL", "SECRET", "TOP SECRET", "OMEGA"],
+  "_THREAT_LEVELS": ["LOW", "GUARDED", "ELEVATED", "CRITICAL"],
+  "_NOTE": "Use the redacted-text convention (wrap sensitive fragments in the site's .redacted span) sparingly and only in prose fields — array fields here are plain strings."
+}

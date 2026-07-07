@@ -1,0 +1,22 @@
+{
+  "_INSTRUCTIONS": "This file is a usage guide — do NOT add it to manifest.json",
+
+  "_HOW_TO_ADD_A_PRESS_RELEASE": [
+    "1. (Optional) drop a PDF into this folder, e.g. RIID-PR-003.pdf",
+    "2. Open manifest.json",
+    "3. Add one entry to the array (see example below)",
+    "4. Push to GitHub — the website auto-shows it on every page open"
+  ],
+
+  "_MANIFEST_ENTRY_FORMAT": {
+    "file": "RIID-PR-003.pdf",
+    "ref": "RIID-PR-003",
+    "title": "Your Press Release Title Here",
+    "date": "2026-07-10",
+    "author": "RIID Office of Public Affairs",
+    "summary": "A one or two sentence summary of this press release.",
+    "content": "Optional full text. Blank lines create new paragraphs.\n\nLeave empty to show only the summary."
+  },
+
+  "_NOTE": "Newest date always shows first. Leave 'file' as an empty string if no PDF exists yet."
+}

@@ -1,6 +1,6 @@
 {
     "_meta":  {
-                  "exportedAtDay":  235,
+                  "exportedAtDay":  39920,
                   "note":  "Auto-exported from Binod World Government ID Panel"
               },
     "publications":  [
@@ -10,7 +10,7 @@
                              "title":  "National Infrastructure Act",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Bavaria",
+                             "country":  "Veromia",
                              "day":  194,
                              "status":  "published",
                              "content":  "All nations are encouraged to maintain roads, railways, and public stations. Government grants may b",
@@ -25,7 +25,7 @@
                              "title":  "Emergency Reserve Act",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Bavaria",
+                             "country":  "Veromia",
                              "day":  194,
                              "status":  "published",
                              "content":  "Every nation shall maintain food and resource reserves to ensure stability during emergencies and sh",
@@ -40,7 +40,7 @@
                              "title":  "Inter-Nation Cooperation Act",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Bavaria",
+                             "country":  "Veromia",
                              "day":  235,
                              "status":  "published",
                              "content":  "Establishes a framework for cooperation between Member Nations on infrastructure, transportation etc",
@@ -55,7 +55,7 @@
                              "title":  "World Reserve Status Report",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Bavaria",
+                             "country":  "Veromia",
                              "day":  189,
                              "status":  "published",
                              "content":  "Current World Reserve stands at 17,962 emeralds.The reserve remains stable and will be preserved fo",
@@ -71,7 +71,7 @@
                              "title":  "Gov tressure",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Bavaria",
+                             "country":  "Veromia",
                              "day":  199,
                              "status":  "published",
                              "content":  "7097",
@@ -87,7 +87,7 @@
                              "title":  "Binod–Port Mafia Strategic Bridge Development Initiative",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Bavaria",
+                             "country":  "Veromia",
                              "day":  229,
                              "status":  "published",
                              "content":  "The Binod World Government has approved the development of the Binod–bavaria MAFIA Strategic Bridge",
@@ -228,6 +228,20 @@
                                       ]
                          },
                          {
+                             "id":  "ANN-005",
+                             "type":  "announcement",
+                             "title":  "Public Notice",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  39877,
+                             "status":  "published",
+                             "content":  "ADOLFO  NEED TO PAY 800 TAX MISSING",
+                             "tags":  [
+                                          "announcement"
+                                      ]
+                         },
+                         {
                              "id":  "ELECT-001",
                              "type":  "election",
                              "title":  "Election #1 — ROLEX5834 Elected",
@@ -292,34 +306,52 @@
                                       ]
                          },
                          {
-                             "id":  "PRES-CURRENT",
+                             "id":  "ELECT-005",
                              "type":  "election",
-                             "title":  "ROLEX5834 — World President",
+                             "title":  "Election #5 — ROLEX5834 Elected",
                              "publishedBy":  "Binod World Government",
                              "office":  "President",
                              "country":  "Bavaria",
-                             "day":  235,
-                             "status":  "active",
+                             "day":  39861,
+                             "status":  "elected",
                              "leader":  "ROLEX5834",
+                             "totalVotes":  3,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-006",
+                             "type":  "election",
+                             "title":  "Election #6 — Sussy baka9975 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Veromia",
+                             "day":  39929,
+                             "status":  "elected",
+                             "leader":  "Sussy baka9975",
+                             "totalVotes":  0,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "PRES-CURRENT",
+                             "type":  "election",
+                             "title":  "Sussy baka9975 — World President",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Veromia",
+                             "day":  39929,
+                             "status":  "active",
+                             "leader":  "Sussy baka9975",
                              "termNumber":  1,
                              "tags":  [
                                           "election",
                                           "presidential",
                                           "active"
-                                      ]
-                         },
-                         {
-                             "id":  "LEADER-BAVARIA",
-                             "type":  "leader_update",
-                             "title":  "Bavaria — Leader",
-                             "publishedBy":  "Binod World Government",
-                             "office":  "ROLEX5834",
-                             "country":  "Bavaria",
-                             "day":  0,
-                             "status":  "active",
-                             "leader":  "ROLEX5834",
-                             "tags":  [
-                                          "leader"
                                       ]
                          },
                          {
@@ -379,15 +411,15 @@
                                       ]
                          },
                          {
-                             "id":  "LEADER-NOCTYRIA",
+                             "id":  "LEADER-BAVARIA",
                              "type":  "leader_update",
-                             "title":  "Noctyria — Leader",
+                             "title":  "Bavaria — Leader",
                              "publishedBy":  "Binod World Government",
-                             "office":  "pewberttyhitter",
-                             "country":  "Noctyria",
+                             "office":  "ROLEX5834",
+                             "country":  "Bavaria",
                              "day":  0,
                              "status":  "active",
-                             "leader":  "pewberttyhitter",
+                             "leader":  "ROLEX5834",
                              "tags":  [
                                           "leader"
                                       ]

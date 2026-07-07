@@ -1,0 +1,18 @@
+{
+  "_INSTRUCTIONS": "This file is a usage guide — do NOT add it to manifest.json",
+
+  "_MANIFEST_ENTRY_FORMAT": {
+    "id": "RIID-2026-NNNN",
+    "operation": "Operation Codename",
+    "classification": "DECLASSIFIED",
+    "status": "DECLASSIFIED",
+    "dateOpened": "2026-01-01",
+    "dateClosed": "2026-01-01",
+    "summary": "Public summary of the investigation — what happened, in plain language.",
+    "outcome": "The final public-facing outcome of the case.",
+    "images": [],
+    "relatedPressReleases": []
+  },
+
+  "_NOTE": "'status' is shown as a badge (e.g. DECLASSIFIED, ONGOING, CLOSED). 'images'/'relatedPressReleases' are optional arrays for future use — leave empty until assets exist."
+}

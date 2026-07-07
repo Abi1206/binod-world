@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — RIID Classified Intelligence Network</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/classified.css" />
+  <script src="js/auth.js"></script>
+</head>
+<body>
+
+  <div class="rc-topbar">⚠ CLASSIFIED — RESTRICTED ACCESS — ALL ACCESS IS LOGGED ⚠</div>
+
+  <header class="rc-header">
+    <img src="../assets/images/logo.png" alt="RIID Seal" class="rc-header-seal" onerror="this.style.display='none'" />
+    <div class="rc-header-identity">
+      <h1>RIID Classified Intelligence Network</h1>
+      <p>Internal Access Only</p>
+    </div>
+    <div class="rc-header-agent">
+      <span>Agent: <strong style="color: var(--cyan);">BINOD</strong></span>
+      <a href="#" data-logout>Log Out ⏻</a>
+    </div>
+  </header>
+
+  <nav class="rc-nav">
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="case-file.html">Case Files</a>
+    <a href="intelligence-map.html">Intelligence Map</a>
+    <a href="evidence-vault.html">Evidence Vault</a>
+    <a href="../index.html" style="margin-left:auto; color: var(--text-faint);">← Public Portal</a>
+  </nav>
+
+  <main class="rc-main">
+    <h2 class="rc-welcome">Welcome, Agent.</h2>
+    <p class="rc-welcome-sub">Clearance verified. Session logged at <span class="live-clock" data-live-clock>--:--:--</span>.</p>
+
+    <div class="rc-card-grid">
+      <a href="case-file.html" class="rc-dash-card">
+        <div class="rc-dash-card-icon">📁</div>
+        <div class="rc-dash-card-title">Active Operations</div>
+        <div class="rc-dash-card-desc">Open classified case files under active investigation.</div>
+        <div class="rc-dash-card-count" id="rc-active-ops-count">—</div>
+      </a>
+      <a href="case-file.html" class="rc-dash-card">
+        <div class="rc-dash-card-icon">🗂</div>
+        <div class="rc-dash-card-title">Intelligence Reports</div>
+        <div class="rc-dash-card-desc">Documents and reports on file across all active cases.</div>
+        <div class="rc-dash-card-count" id="rc-intel-reports-count">—</div>
+      </a>
+      <a href="intelligence-map.html" class="rc-dash-card">
+        <div class="rc-dash-card-icon">🗺</div>
+        <div class="rc-dash-card-title">World Threat Monitor</div>
+        <div class="rc-dash-card-desc">Layered intelligence map — nations, crime scenes, safe houses and more.</div>
+        <div class="rc-dash-card-count"><span class="threat-badge threat-elevated" style="font-size:0.6rem;">Elevated</span></div>
+      </a>
+      <a href="evidence-vault.html" class="rc-dash-card">
+        <div class="rc-dash-card-icon">🔒</div>
+        <div class="rc-dash-card-title">Evidence Vault</div>
+        <div class="rc-dash-card-desc">Photographs, documents, audio logs and investigation notes.</div>
+        <div class="rc-dash-card-count">4 Items</div>
+      </a>
+      <div class="rc-dash-card" style="cursor: default; opacity: 0.7;">
+        <div class="rc-dash-card-icon">📡</div>
+        <div class="rc-dash-card-title">Surveillance</div>
+        <div class="rc-dash-card-desc">Live surveillance feeds and monitoring logs.</div>
+        <div class="rc-dash-card-count" style="font-size: 0.9rem; color: var(--text-faint);">Coming Online</div>
+      </div>
+      <div class="rc-dash-card" style="cursor: default; opacity: 0.7;">
+        <div class="rc-dash-card-icon">✉</div>
+        <div class="rc-dash-card-title">Secure Messages</div>
+        <div class="rc-dash-card-desc">Encrypted internal communications between agents and command.</div>
+        <div class="rc-dash-card-count" style="font-size: 0.9rem; color: var(--text-faint);">Coming Online</div>
+      </div>
+      <div class="rc-dash-card" style="cursor: default; opacity: 0.7;">
+        <div class="rc-dash-card-icon">🪪</div>
+        <div class="rc-dash-card-title">Personnel Database</div>
+        <div class="rc-dash-card-desc">Agent records, clearance levels and division assignments.</div>
+        <div class="rc-dash-card-count" style="font-size: 0.9rem; color: var(--text-faint);">Coming Online</div>
+      </div>
+      <div class="rc-dash-card" style="cursor: default; opacity: 0.7;">
+        <div class="rc-dash-card-icon">📜</div>
+        <div class="rc-dash-card-title">Presidential Directives</div>
+        <div class="rc-dash-card-desc">Classified executive directives from the Office of the President.</div>
+        <div class="rc-dash-card-count" style="font-size: 0.9rem; color: var(--text-faint);">0 Active</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="rc-footer">
+    <p>RIID CLASSIFIED INTELLIGENCE NETWORK &nbsp;·&nbsp; RESTRICTED DISTRIBUTION &nbsp;·&nbsp; NOT FOR PUBLIC RELEASE</p>
+    <p>This page is not indexed by search engines and does not appear in public navigation. Direct URL access only.</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="js/classified-data.js"></script>
+</body>
+</html>

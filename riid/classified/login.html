@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Access — RIID Classified Intelligence Network</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Restricted — Authorized Personnel Only" />
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/classified.css" />
+</head>
+<body>
+
+  <div class="rc-topbar">⚠ UNAUTHORIZED ACCESS IS PROHIBITED — ALL ACCESS IS LOGGED ⚠</div>
+
+  <div class="rc-login-wrap">
+    <div class="scanlines"></div>
+    <div class="rc-login-card">
+      <img src="../assets/images/logo.png" alt="RIID Seal" class="rc-login-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+      <div class="rc-login-logo-fallback" style="display:none;">R</div>
+      <div class="rc-login-title">Classified Intelligence Network</div>
+      <div class="rc-login-sub">RIID Secure Portal</div>
+
+      <div class="rc-login-error" id="rc-login-error">ACCESS DENIED — invalid credentials. This attempt has been logged.</div>
+
+      <form id="rc-login-form" autocomplete="off">
+        <div class="rc-field">
+          <label for="rc-username">Username</label>
+          <input type="text" id="rc-username" name="username" autocomplete="off" required />
+        </div>
+        <div class="rc-field">
+          <label for="rc-password">Password</label>
+          <input type="password" id="rc-password" name="password" autocomplete="off" required />
+        </div>
+        <button type="submit" class="btn btn-red btn-block">Log In →</button>
+      </form>
+
+      <div class="rc-login-warning">
+        <strong>UNAUTHORIZED ACCESS IS PROHIBITED</strong>
+        This system is restricted to authorized RIID personnel holding confirmed security clearance. All access attempts, successful or otherwise, are logged.
+      </div>
+
+      <div class="text-center mt-6"><a href="../index.html" class="text-faint font-mono" style="text-decoration:none;">← Return to Public Portal</a></div>
+    </div>
+  </div>
+
+  <script>
+    // Roleplay-flavor gate only — this is a static site with no backend, so
+    // this can never be real access control. Credentials are the spec's own
+    // literal dev login (view-source reveals them by design).
+    document.getElementById('rc-login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const user = document.getElementById('rc-username').value.trim();
+      const pass = document.getElementById('rc-password').value;
+      const errorEl = document.getElementById('rc-login-error');
+      if (user === 'BINOD' && pass === 'PORT_MAFIA') {
+        sessionStorage.setItem('riid_auth', 'granted');
+        location.href = 'dashboard.html';
+      } else {
+        errorEl.classList.add('show');
+        document.getElementById('rc-password').value = '';
+      }
+    });
+  </script>
+</body>
+</html>
