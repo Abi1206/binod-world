@@ -1,6 +1,6 @@
 {
     "_meta":  {
-                  "exportedAtDay":  39920,
+                  "exportedAtDay":  40123,
                   "note":  "Auto-exported from Binod World Government ID Panel"
               },
     "publications":  [
@@ -10,7 +10,7 @@
                              "title":  "National Infrastructure Act",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Veromia",
+                             "country":  "Bavaria",
                              "day":  194,
                              "status":  "published",
                              "content":  "All nations are encouraged to maintain roads, railways, and public stations. Government grants may b",
@@ -25,7 +25,7 @@
                              "title":  "Emergency Reserve Act",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Veromia",
+                             "country":  "Bavaria",
                              "day":  194,
                              "status":  "published",
                              "content":  "Every nation shall maintain food and resource reserves to ensure stability during emergencies and sh",
@@ -40,10 +40,70 @@
                              "title":  "Inter-Nation Cooperation Act",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Veromia",
+                             "country":  "Bavaria",
                              "day":  235,
                              "status":  "published",
                              "content":  "Establishes a framework for cooperation between Member Nations on infrastructure, transportation etc",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-004",
+                             "type":  "law",
+                             "title":  "Right to Emergency Food from Binod",
+                             "publishedBy":  "Franky boy3746",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  39972,
+                             "status":  "published",
+                             "content":  "Any Nation from scarcity of food will be provided food from government out of any means in support By all Binod Nations",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-005",
+                             "type":  "law",
+                             "title":  "Government Ethics \u0026 Anti-Corruption Act",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40023,
+                             "status":  "published",
+                             "content":  "No sitting President, nor any registered candidate during an active election may spend from their own country\u0027s treasury on Government Bonds, Government Ships, Treasury Assistance Requests submitted to their own office.",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-006",
+                             "type":  "law",
+                             "title":  "National Taxation Reform Act",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40024,
+                             "status":  "published",
+                             "content":  "Colony tax collection is now tied to citizen happiness a nation with low morale will see reduced tax revenue rewarding leaders who keep their people To protect citizens, any leader who sets a high tax rate must only collect half that rate from indiv",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-007",
+                             "type":  "law",
+                             "title":  "Government Land Acquistion \u0026 Protection",
+                             "publishedBy":  "MrAdolfo6067",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40041,
+                             "status":  "published",
+                             "content":  "Government land is public to all the participants in the Binod. People shall be accountable and can be found guilty of illegal occupation of Government land These illegal occupation will lead to Acquistion of the respective land to the government or destroy",
                              "tags":  [
                                           "law",
                                           "government"
@@ -55,7 +115,7 @@
                              "title":  "World Reserve Status Report",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Veromia",
+                             "country":  "Bavaria",
                              "day":  189,
                              "status":  "published",
                              "content":  "Current World Reserve stands at 17,962 emeralds.The reserve remains stable and will be preserved fo",
@@ -71,7 +131,7 @@
                              "title":  "Gov tressure",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Veromia",
+                             "country":  "Bavaria",
                              "day":  199,
                              "status":  "published",
                              "content":  "7097",
@@ -87,10 +147,74 @@
                              "title":  "Binod–Port Mafia Strategic Bridge Development Initiative",
                              "publishedBy":  "ROLEX5834",
                              "office":  "President",
-                             "country":  "Veromia",
+                             "country":  "Bavaria",
                              "day":  229,
                              "status":  "published",
                              "content":  "The Binod World Government has approved the development of the Binod–bavaria MAFIA Strategic Bridge",
+                             "category":  "Development",
+                             "tags":  [
+                                          "whitepaper",
+                                          "development"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-004",
+                             "type":  "whitepaper",
+                             "title":  "Cat distribution System as first act",
+                             "publishedBy":  "Franky boy3746",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  39965,
+                             "status":  "published",
+                             "content":  "300 emeralds spent for the betterment protection of the creeper",
+                             "category":  "Policy",
+                             "tags":  [
+                                          "whitepaper",
+                                          "policy"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-005",
+                             "type":  "whitepaper",
+                             "title":  "tressuery",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  39985,
+                             "status":  "published",
+                             "content":  "20260 is there",
+                             "category":  "Announcement",
+                             "tags":  [
+                                          "whitepaper",
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-006",
+                             "type":  "whitepaper",
+                             "title":  "GOV TRESSUREY",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40029,
+                             "status":  "published",
+                             "content":  "20800",
+                             "category":  "Announcement",
+                             "tags":  [
+                                          "whitepaper",
+                                          "announcement"
+                                      ]
+                         },
+                         {
+                             "id":  "WP-007",
+                             "type":  "whitepaper",
+                             "title":  "HyperRail Maintainence",
+                             "publishedBy":  "MrAdolfo6067",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40046,
+                             "status":  "published",
+                             "content":  "Maintainence of HyperRail is done by PPPP between Binod Government and Port Mafia",
                              "category":  "Development",
                              "tags":  [
                                           "whitepaper",
@@ -121,6 +245,36 @@
                              "day":  194,
                              "status":  "published",
                              "content":  "Each nation retains the right to govern its own territory, economy, and internal affairs.",
+                             "tags":  [
+                                          "constitution",
+                                          "article"
+                                      ]
+                         },
+                         {
+                             "id":  "ART-002",
+                             "type":  "article",
+                             "title":  "Rationed Population",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  40007,
+                             "status":  "published",
+                             "content":  "colony may sustain up to 30 citizens and 30 soldiers (60 total) under standard rationing. Colonies exceeding this threshold will see delayed feeding for the excess.",
+                             "tags":  [
+                                          "constitution",
+                                          "article"
+                                      ]
+                         },
+                         {
+                             "id":  "ART-003",
+                             "type":  "article",
+                             "title":  "Article III — Separation of Office and Personal Gain",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  40024,
+                             "status":  "published",
+                             "content":  "No President, nor any registered election candidate, may spend their nation\u0027s treasury on Government Bonds, Government Ships, or Treasury Assistance Requests submitted to their own office. Public office shall never be used for personal or national advantage over other Binod Nations.",
                              "tags":  [
                                           "constitution",
                                           "article"
@@ -242,6 +396,20 @@
                                       ]
                          },
                          {
+                             "id":  "ANN-006",
+                             "type":  "announcement",
+                             "title":  "Public Notice",
+                             "publishedBy":  "MrAdolfo6067",
+                             "office":  "President",
+                             "country":  null,
+                             "day":  40030,
+                             "status":  "published",
+                             "content":  "Treasury Reserve: 21115",
+                             "tags":  [
+                                          "announcement"
+                                      ]
+                         },
+                         {
                              "id":  "ELECT-001",
                              "type":  "election",
                              "title":  "Election #1 — ROLEX5834 Elected",
@@ -338,15 +506,79 @@
                                       ]
                          },
                          {
-                             "id":  "PRES-CURRENT",
+                             "id":  "ELECT-007",
                              "type":  "election",
-                             "title":  "Sussy baka9975 — World President",
+                             "title":  "Election #7 — Franky boy3746 Elected",
                              "publishedBy":  "Binod World Government",
                              "office":  "President",
-                             "country":  "Veromia",
-                             "day":  39929,
+                             "country":  "Port Mafia",
+                             "day":  39940,
+                             "status":  "elected",
+                             "leader":  "Franky boy3746",
+                             "totalVotes":  3,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-008",
+                             "type":  "election",
+                             "title":  "Election #8 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  39985,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  4,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-009",
+                             "type":  "election",
+                             "title":  "Election #9 — MrAdolfo6067 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Kasukabey",
+                             "day":  40030,
+                             "status":  "elected",
+                             "leader":  "MrAdolfo6067",
+                             "totalVotes":  3,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-010",
+                             "type":  "election",
+                             "title":  "Election #10 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40079,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  1,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "PRES-CURRENT",
+                             "type":  "election",
+                             "title":  "ROLEX5834 — World President",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40079,
                              "status":  "active",
-                             "leader":  "Sussy baka9975",
+                             "leader":  "ROLEX5834",
                              "termNumber":  1,
                              "tags":  [
                                           "election",
@@ -383,12 +615,12 @@
                                       ]
                          },
                          {
-                             "id":  "LEADER-KASUKA_BAY",
+                             "id":  "LEADER-KASUKABEY",
                              "type":  "leader_update",
-                             "title":  "Kasuka bay — Leader",
+                             "title":  "Kasukabey — Leader",
                              "publishedBy":  "Binod World Government",
                              "office":  "MrAdolfo6067",
-                             "country":  "Kasuka bay",
+                             "country":  "Kasukabey",
                              "day":  0,
                              "status":  "active",
                              "leader":  "MrAdolfo6067",
@@ -420,6 +652,20 @@
                              "day":  0,
                              "status":  "active",
                              "leader":  "ROLEX5834",
+                             "tags":  [
+                                          "leader"
+                                      ]
+                         },
+                         {
+                             "id":  "LEADER-NOCTYRIA",
+                             "type":  "leader_update",
+                             "title":  "Noctyria — Leader",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "pewberttyhitter",
+                             "country":  "Noctyria",
+                             "day":  0,
+                             "status":  "active",
+                             "leader":  "pewberttyhitter",
                              "tags":  [
                                           "leader"
                                       ]
