@@ -226,7 +226,7 @@ img { max-width: 100%; }
 .gov-hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('assets/images/hero-bg.jpeg');
+  background-image: url('../assets/images/hero-bg.jpeg');
   background-size: cover;
   background-position: center top;
   opacity: 0.18;
@@ -630,6 +630,7 @@ img { max-width: 100%; }
 }
 
 /* ─── GOVERNMENT TABLE ─── */
+.table-scroll { overflow-x: auto; max-width: 100%; }
 .gov-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
 .gov-table th {
   background: var(--navy);

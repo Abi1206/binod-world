@@ -480,6 +480,7 @@ img { max-width: 100%; display: block; }
 .org-node.top { color: var(--cyan-bright); border-color: var(--cyan); }
 .org-connector { width: 2px; height: 24px; background: var(--border-cyan); }
 .org-row { display: flex; gap: 24px; }
+@media (max-width: 600px) { .org-row { flex-wrap: wrap; justify-content: center; } }
 .org-row .org-connector-h { display: none; }
 
 /* ─── TABLE ──────────────────────────────────────────────────────── */
@@ -560,7 +561,7 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 768px) {
   .split-layout, .split-layout.three { grid-template-columns: 1fr; gap: 28px; }
-  .ops-grid { grid-template-columns: 1fr; }
+  .ops-grid { grid-template-columns: 1fr !important; }   /* the inline-styled grid on index.html would otherwise stay at 3 columns */
   .news-grid { grid-template-columns: 1fr; }
   .wanted-grid { grid-template-columns: 1fr; }
   .recruit-steps { grid-template-columns: 1fr; }
