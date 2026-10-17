@@ -1,0 +1,34 @@
+# Validates the PUBLIC site on every push and pull request. Uses NO secrets and needs none: it only reads files that are already public.
+# Fails (red X) if: restricted/classified content or credentials appear, JSON is broken, a NEW broken link appears,
+# or the VANTA search index is stale relative to the public data.
+name: Validate public site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Least privilege: read-only token. (Pull requests from forks get a read-only token and no secrets by GitHub's design.)
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      # Third-party actions are pinned to a full commit SHA (not a movable tag).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check the preinstalled Node version
+        run: node --version && node -e "const [a,b]=process.versions.node.split('.').map(Number); if (a<20||(a===20&&b<11)) { console.error('Node >= 20.11 required'); process.exit(1); }"
+
+      - name: Validate (guard, JSON, links, search-index freshness, size)
+        run: node .github/tools/check-site.mjs

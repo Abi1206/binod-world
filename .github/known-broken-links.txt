@@ -1,0 +1,4 @@
+# Links that were already broken before the static edition was added (page -> target). New breakage fails validation.
+index.html -> assets/images/screenshot-nations.png
+riid/most-wanted.html -> assets/images/wanted-01.png
+riid/most-wanted.html -> assets/images/wanted-02.png

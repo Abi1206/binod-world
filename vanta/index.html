@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'" />
+  <title>VANTA — Search Binod World</title>
+  <meta name="description" content="VANTA is the public search engine for the Binod World: government publications, BIASR research, declassified RIID records and registered organisations." />
+  <link rel="stylesheet" href="vanta.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="./" aria-label="VANTA home"><span class="mark" aria-hidden="true">V</span><span class="word">VANTA</span></a>
+    <nav aria-label="Primary">
+      <a href="https://github.com/Abi1206/binod-world/issues/new?template=organisation.yml" rel="noopener">Suggest an organisation</a>
+      <a href="https://abi1206.github.io/binod-world/">Government Portal</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" id="hero">
+      <p class="eyebrow">VANTA // public index</p>
+      <h1>Find anything in the Binod World.</h1>
+      <p class="sub">Laws, research, declassified investigations, institutions and services — one search.</p>
+      <ul class="status-row" aria-label="Status">
+        <li id="stat-index">Index loading</li>
+        <li>Runs in your browser</li>
+        <li>Public records only</li>
+        <li class="off">No accounts</li>
+      </ul>
+    </section>
+
+    <form class="searchbox" id="form" role="search" autocomplete="off">
+      <label class="sr" for="q">Search</label>
+      <input id="q" name="q" type="search" role="combobox" maxlength="300" placeholder="Search laws, research, cases, organisations…" aria-autocomplete="list" aria-controls="suggest" aria-expanded="false" aria-haspopup="listbox" />
+      <button type="submit">Search</button>
+      <ul id="suggest" role="listbox" hidden></ul>
+    </form>
+
+    <div class="filters" id="filters" aria-label="Filter results" hidden></div>
+    <p class="meta" id="meta" role="status" aria-live="polite"></p>
+    <ol class="results" id="results"></ol>
+    <nav class="pager" id="pager" aria-label="Pagination" hidden></nav>
+  </main>
+
+  <footer class="foot">
+    <span id="about-index">Loading the public index…</span>
+    <br />
+    This static edition runs entirely in your browser: your searches are not sent anywhere or recorded. It indexes public records only.
+  </footer>
+  <script type="module" src="vanta-static.js"></script>
+</body>
+</html>

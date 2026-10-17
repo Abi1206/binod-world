@@ -1,0 +1,102 @@
+/* Static ENDERGATE gateway — "entering a secret network". Loaded after endergate.css; scoped to the static page's structure.
+   Pure CSS: no remote assets, no scripts. Animation is decorative and is disabled by prefers-reduced-motion.
+   Three zones are visually distinct on purpose: 01 gateway (violet), 02 signal directory (cold blue, locked), 03 visual demo (amber hazard frame). */
+:root { --amber: #fbbf24; --ice: #a5e1ff; --violet2: #c4b5fd; --mono: "JetBrains Mono", "Cascadia Code", "SF Mono", ui-monospace, Consolas, monospace; }
+body[data-layer="gate"] { --void: #05020c; --panel: #0d0719; --panel2: #130a24; --line: #2f2060; --dim: #a99bd6; background:
+  radial-gradient(ellipse 70% 45% at 50% 0%, rgba(124, 58, 237, .30), transparent 70%),
+  radial-gradient(ellipse 50% 40% at 100% 100%, rgba(34, 211, 238, .07), transparent 70%), var(--void); background-attachment: fixed; background-repeat: no-repeat; }
+body[data-layer="gate"]::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(rgba(168, 85, 247, .09) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 85, 247, .09) 1px, transparent 1px); background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000, transparent 80%); mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000, transparent 80%); }
+body[data-layer="gate"]::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: repeating-linear-gradient(transparent 0 3px, rgba(0, 0, 0, .16) 3px 4px), radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .65) 100%); }
+
+/* header */
+.bar { font-family: var(--mono); letter-spacing: .02em; border-bottom-color: rgba(168, 85, 247, .35); }
+.prompt::before { content: "▸ "; }
+.who { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--err); box-shadow: 0 0 8px var(--err); }
+.eyebrow { margin: 0 0 8px; font: 600 11.5px var(--mono); letter-spacing: .26em; text-transform: uppercase; color: var(--violet2); }
+
+/* zone 01 — the portal */
+.portal { padding: 18px 0 8px; }
+.stage { position: relative; height: 270px; width: min(100%, 520px); margin: 0 auto; }
+.beam { position: absolute; left: 50%; bottom: 72px; width: 190px; height: 200px; transform: translateX(-50%); overflow: hidden;
+  background: linear-gradient(to top, rgba(192, 132, 252, .55), rgba(124, 58, 237, .20) 55%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); }
+.beam::before { content: ""; position: absolute; inset: 0; background-repeat: repeat-y; background-size: 190px 200px; background-image:
+  radial-gradient(1.6px 1.6px at 30% 20%, #fff, transparent), radial-gradient(1.2px 1.2px at 62% 55%, #e9d5ff, transparent), radial-gradient(1.8px 1.8px at 46% 82%, #fff, transparent),
+  radial-gradient(1.2px 1.2px at 78% 35%, #c4b5fd, transparent), radial-gradient(1.4px 1.4px at 18% 68%, #e9d5ff, transparent); }
+.ring { position: absolute; left: 50%; bottom: 22px; width: 330px; height: 124px; margin: 0; transform: translateX(-50%); overflow: hidden; border-radius: 50%; animation: none;
+  border: 2px solid #d8b4fe; background: radial-gradient(ellipse at center, #000 20%, #2b0f58 100%);
+  box-shadow: 0 0 46px rgba(168, 85, 247, .75), 0 0 120px rgba(124, 58, 237, .45), inset 0 0 44px rgba(168, 85, 247, .65); }
+.ring i { position: absolute; display: block; }
+.ring .r1 { inset: 9px; border-radius: 50%; border: 1px solid rgba(233, 213, 255, .55); box-shadow: inset 0 0 18px rgba(192, 132, 252, .6); }
+.ring .r2, .ring .r3 { left: 50%; top: 50%; width: 330px; height: 330px; margin: -165px 0 0 -165px; border-radius: 50%; transform: scaleY(.376); }
+.ring .r2 { background: conic-gradient(from 0deg, transparent 0 8%, rgba(124, 58, 237, .85) 18%, transparent 30%, rgba(233, 213, 255, .9) 44%, transparent 56%, rgba(168, 85, 247, .85) 72%, transparent 86%);
+  -webkit-mask-image: radial-gradient(circle, transparent 14%, #000 40%, #000 62%, transparent 70%); mask-image: radial-gradient(circle, transparent 14%, #000 40%, #000 62%, transparent 70%); }
+.ring .r3 { background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .0) 0 9deg, rgba(255, 255, 255, .6) 9.6deg 10deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 20%, #000 38%, transparent 56%); mask-image: radial-gradient(circle, transparent 20%, #000 38%, transparent 56%); opacity: .45; }
+.ring .core { left: 50%; top: 50%; width: 70px; height: 24px; margin: -12px 0 0 -35px; border-radius: 50%; background: radial-gradient(ellipse, #fff, rgba(233, 213, 255, .55) 40%, transparent 72%); filter: blur(3px); }
+.portal h1 { margin: 14px 0 6px; letter-spacing: .5em; text-indent: .5em; font-size: clamp(28px, 7vw, 46px); color: #f3e8ff; text-shadow: 0 0 22px rgba(168, 85, 247, .9), 0 0 60px rgba(124, 58, 237, .6); }
+.tag { margin: 0; color: var(--violet2); font-style: italic; }
+.readout { display: inline-block; margin: 16px 0 0; padding: 6px 14px; font: 12px var(--mono); letter-spacing: .08em; color: var(--dim); border: 1px solid var(--line); border-radius: 6px; background: rgba(13, 7, 25, .75); }
+
+/* honest status block */
+.status-banner { position: relative; border: 1px solid rgba(168, 85, 247, .55); border-left-width: 4px; color: var(--ink); background: linear-gradient(160deg, rgba(124, 58, 237, .16), rgba(13, 7, 25, .85)); }
+.status-banner h2 { margin-top: 0; color: #e9d5ff; font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: 15px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 14px 0 0; padding: 0; }
+.facts li { padding: 4px 11px; font: 600 12px var(--mono); letter-spacing: .04em; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; background: rgba(5, 2, 12, .6); }
+.facts li::before { content: "× "; color: var(--err); }
+
+/* zone 02 — signal directory: cold, locked */
+.directory { border-color: #1f3a52; background: linear-gradient(160deg, rgba(8, 20, 32, .9), rgba(5, 2, 12, .9)); }
+.directory .eyebrow { color: var(--ice); }
+.directory h2 { color: var(--ice); font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: 15px; }
+.signals { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.signals li { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 14px; padding: 10px 14px; border: 1px solid #1f3a52; border-radius: 8px; background: rgba(5, 12, 20, .7); font-family: var(--mono); }
+.sig-id { font-size: 12px; letter-spacing: .14em; color: var(--ice); }
+.sig-bar { height: 6px; border-radius: 3px; background: repeating-linear-gradient(45deg, #1f3a52 0 6px, #0f2234 6px 12px); }
+.sig-state { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+
+/* zone 03 — the visual demo: unmistakably a demo */
+.demo { position: relative; border: 2px dashed var(--amber); border-radius: 12px; background: linear-gradient(160deg, rgba(251, 191, 36, .06), rgba(13, 7, 25, .92) 40%); }
+.demo::before { content: ""; position: absolute; left: -2px; right: -2px; top: -2px; height: 8px; border-radius: 12px 12px 0 0; background: repeating-linear-gradient(45deg, var(--amber) 0 10px, #1a1203 10px 20px); opacity: .85; }
+.demo .eyebrow { margin-top: 8px; color: var(--amber); }
+.demo h2 { color: #fde68a; font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: 15px; }
+.demo-flag { margin: 0 0 14px; padding: 11px 14px; background: color-mix(in srgb, var(--err) 14%, transparent); border: 1px solid var(--err); border-radius: 6px; color: var(--ink); font-weight: 600; letter-spacing: .03em; }
+.log { list-style: none; margin: 12px 0; padding: 10px; height: auto; max-height: 260px; overflow-y: auto; font: 13.5px/1.6 var(--mono); background: #04010a; border: 1px solid var(--line); border-radius: 8px; }
+.log .msg { margin: 0 0 8px; overflow-wrap: anywhere; }
+.log .body { white-space: pre-wrap; }
+.inline input { font-family: var(--mono); font-size: 14px; }
+.inline button { white-space: nowrap; }
+.demo button:not(.link) { border-color: var(--amber); background: color-mix(in srgb, #92400e 55%, transparent); }
+.demo button:not(.link):hover { background: color-mix(in srgb, #92400e 85%, #000); box-shadow: 0 0 18px rgba(251, 191, 36, .35); }
+code { font-family: var(--mono); font-size: .92em; }
+.foot { text-align: center; color: var(--dim); font: 12px/1.7 var(--mono); letter-spacing: .03em; padding: 24px 20px; border-top: 1px solid var(--line); }
+
+@media (max-width: 720px) {
+  .stage { height: 220px; }
+  .ring { width: 250px; height: 96px; bottom: 16px; }
+  .ring .r2, .ring .r3 { width: 250px; height: 250px; margin: -125px 0 0 -125px; transform: scaleY(.384); }
+  .beam { width: 150px; height: 160px; bottom: 56px; }
+  .portal h1 { letter-spacing: .28em; text-indent: .28em; }
+  .signals li { grid-template-columns: 1fr auto; } .sig-bar { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ring .r2 { animation: swirl 14s linear infinite; }
+  .ring .r3 { animation: swirl 40s linear infinite reverse; }
+  .ring .core { animation: flicker 5s ease-in-out infinite; }
+  .ring { animation: halo 6s ease-in-out infinite; }
+  .beam::before { animation: rise 7s linear infinite; }
+  .beam { animation: beam 6s ease-in-out infinite; }
+  .dot { animation: blink 2.4s ease-in-out infinite; }
+  body[data-layer="gate"]::before { animation: drift 50s linear infinite; }
+  @keyframes swirl { from { transform: scaleY(.376) rotate(0); } to { transform: scaleY(.376) rotate(360deg); } }
+  @keyframes flicker { 50% { opacity: .65; transform: scale(1.15); } }
+  @keyframes halo { 50% { box-shadow: 0 0 64px rgba(192, 132, 252, .9), 0 0 150px rgba(124, 58, 237, .55), inset 0 0 56px rgba(168, 85, 247, .8); } }
+  @keyframes rise { to { background-position-y: -200px; } }
+  @keyframes beam { 50% { opacity: .78; } }
+  @keyframes blink { 50% { opacity: .35; } }
+  @keyframes drift { to { background-position: 64px 64px, 64px 64px; } }
+}
+@media (forced-colors: active) { .ring, .beam, .stage { display: none; } .demo, .directory, .status-banner { border: 2px solid CanvasText; } }

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- connect-src 'none': this page is unable to make ANY network request, by browser enforcement, not by promise. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; font-src 'self'; base-uri 'none'; form-action 'none'" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>ENDERGATE — public gateway</title>
+  <link rel="stylesheet" href="endergate.css" />
+  <link rel="stylesheet" href="demo.css" />
+  <link rel="icon" href="data:," />
+</head>
+<body data-layer="gate">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="bar">
+    <span class="prompt" aria-hidden="true">endergate://gate</span>
+    <nav class="layers" aria-label="Site navigation">
+      <a class="layer" href="./" aria-current="page">The Gate</a>
+      <span class="layer locked">4 unknown signals</span>
+      <a class="layer" href="../vanta/">VANTA</a>
+      <a class="layer" href="https://abi1206.github.io/binod-world/">Government Portal</a>
+    </nav>
+    <span class="who"><span class="dot" aria-hidden="true"></span>not connected</span>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="portal" aria-labelledby="h-gate">
+      <div class="stage" aria-hidden="true">
+        <div class="beam"></div>
+        <div class="ring"><i class="r1"></i><i class="r2"></i><i class="r3"></i><i class="core"></i></div>
+      </div>
+      <p class="eyebrow">Zone 01 · The Gate</p>
+      <h1 id="h-gate">ENDERGATE</h1>
+      <p class="tag">Every network begins at a door.</p>
+      <p class="readout" aria-label="Gateway readout">signal: none &nbsp;·&nbsp; link: none &nbsp;·&nbsp; mode: display only</p>
+    </section>
+
+    <section class="banner status-banner" role="note" aria-labelledby="h-status">
+      <h2 id="h-status">Backend not connected</h2>
+      <p>This is the public gateway only. <strong>There is no sign-in, no account system, no private channel, no document store and no marketplace here</strong>: they are not available here, and nothing on this page is sent over the network. The deeper layers are shown as unknown signals because there is no server behind them yet.</p>
+      <ul class="facts" aria-label="What this page does not have">
+        <li>No network link</li>
+        <li>No accounts</li>
+        <li>No private channels</li>
+        <li>No document store</li>
+        <li>No marketplace</li>
+        <li>No requests from this page</li>
+      </ul>
+    </section>
+
+    <section class="panel directory" aria-labelledby="h-dir">
+      <p class="eyebrow">Zone 02 · Signal directory</p>
+      <h2 id="h-dir">Signal directory</h2>
+      <p class="dim">Four signals lie beyond the gate. None of them can be reached from this page, and nothing about them is published here.</p>
+      <ol class="signals">
+        <li><span class="sig-id">SIGNAL 01</span><span class="sig-bar" aria-hidden="true"></span><span class="sig-state">unresolved</span></li>
+        <li><span class="sig-id">SIGNAL 02</span><span class="sig-bar" aria-hidden="true"></span><span class="sig-state">unresolved</span></li>
+        <li><span class="sig-id">SIGNAL 03</span><span class="sig-bar" aria-hidden="true"></span><span class="sig-state">unresolved</span></li>
+        <li><span class="sig-id">SIGNAL 04</span><span class="sig-bar" aria-hidden="true"></span><span class="sig-state">unresolved</span></li>
+      </ol>
+    </section>
+
+    <section class="panel demo" aria-labelledby="h-demo">
+      <p class="eyebrow">Zone 03 · Visual demo</p>
+      <p class="demo-flag" role="note"><strong>DEMO — local to this browser only.</strong> NOT encrypted. NOT private. NOT sent to anyone.</p>
+      <h2 id="h-demo">Demo transmission console</h2>
+      <p class="dim">This console only shows how a transmission console will look. Entries are saved in this browser (<code>localStorage</code>) as plain text. Nobody else can receive them, and nothing here is protected: anyone using this browser, and other pages on this website's address, can read them. Do not type anything you want to keep confidential.</p>
+      <div role="log" aria-live="polite" aria-label="Local demo log"><ol class="log" id="log"></ol></div>
+      <form id="demo-form" class="inline" autocomplete="off">
+        <label class="sr" for="demo-text">Demo message (stays in this browser)</label>
+        <input id="demo-text" name="text" maxlength="500" placeholder="Type a demo message…" />
+        <button type="submit">Add to local log</button>
+      </form>
+      <p class="note" id="demo-status" role="status"></p>
+      <button type="button" class="link" id="demo-clear">Clear the local log</button>
+    </section>
+  </main>
+
+  <footer class="foot">Static public edition · no accounts · no tracking · no network requests from this page.</footer>
+  <script type="module" src="demo-console.js"></script>
+</body>
+</html>

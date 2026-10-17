@@ -1,0 +1,43 @@
+name: Suggest an organisation, service or resource
+description: Ask for a PUBLIC entry in the VANTA directory. Everything you write here is public.
+title: "[Directory] "
+labels: ["directory"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Everything on this form is public** (GitHub issues on this repository are visible to everyone).
+        Do not include passwords, personal information or anything confidential.
+        The site owner reviews each suggestion and adds approved entries to the public directory by hand.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: 3 to 80 characters.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type
+      options:
+        - organisation
+        - institution
+        - service
+        - resource
+        - community
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: 10 to 600 characters. What is it, and who is it for?
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Public link (https only)
+    validations:
+      required: true
