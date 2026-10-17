@@ -1,6 +1,6 @@
-/* Static ENDERGATE gateway — "entering a secret network". Loaded after endergate.css; scoped to the static page's structure.
+/* Static ENDERGATE gateway - "entering a secret network". Loaded after endergate.css; scoped to the static page's structure.
    Pure CSS: no remote assets, no scripts. Animation is decorative and is disabled by prefers-reduced-motion.
-   Three zones are visually distinct on purpose: 01 gateway (violet), 02 signal directory (cold blue, locked), 03 visual demo (amber hazard frame). */
+   Three zones are visually distinct on purpose: 01 gateway (violet), 02 signal directory (cold blue, locked), 03 transmission notice (plain, no controls). */
 :root { --amber: #fbbf24; --ice: #a5e1ff; --violet2: #c4b5fd; --mono: "JetBrains Mono", "Cascadia Code", "SF Mono", ui-monospace, Consolas, monospace; }
 body[data-layer="gate"] { --void: #05020c; --panel: #0d0719; --panel2: #130a24; --line: #2f2060; --dim: #a99bd6; background:
   radial-gradient(ellipse 70% 45% at 50% 0%, rgba(124, 58, 237, .30), transparent 70%),
@@ -58,19 +58,11 @@ body[data-layer="gate"]::after { content: ""; position: fixed; inset: 0; z-index
 .sig-bar { height: 6px; border-radius: 3px; background: repeating-linear-gradient(45deg, #1f3a52 0 6px, #0f2234 6px 12px); }
 .sig-state { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
 
-/* zone 03 — the visual demo: unmistakably a demo */
-.demo { position: relative; border: 2px dashed var(--amber); border-radius: 12px; background: linear-gradient(160deg, rgba(251, 191, 36, .06), rgba(13, 7, 25, .92) 40%); }
-.demo::before { content: ""; position: absolute; left: -2px; right: -2px; top: -2px; height: 8px; border-radius: 12px 12px 0 0; background: repeating-linear-gradient(45deg, var(--amber) 0 10px, #1a1203 10px 20px); opacity: .85; }
-.demo .eyebrow { margin-top: 8px; color: var(--amber); }
-.demo h2 { color: #fde68a; font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: 15px; }
-.demo-flag { margin: 0 0 14px; padding: 11px 14px; background: color-mix(in srgb, var(--err) 14%, transparent); border: 1px solid var(--err); border-radius: 6px; color: var(--ink); font-weight: 600; letter-spacing: .03em; }
-.log { list-style: none; margin: 12px 0; padding: 10px; height: auto; max-height: 260px; overflow-y: auto; font: 13.5px/1.6 var(--mono); background: #04010a; border: 1px solid var(--line); border-radius: 8px; }
-.log .msg { margin: 0 0 8px; overflow-wrap: anywhere; }
-.log .body { white-space: pre-wrap; }
-.inline input { font-family: var(--mono); font-size: 14px; }
-.inline button { white-space: nowrap; }
-.demo button:not(.link) { border-color: var(--amber); background: color-mix(in srgb, #92400e 55%, transparent); }
-.demo button:not(.link):hover { background: color-mix(in srgb, #92400e 85%, #000); box-shadow: 0 0 18px rgba(251, 191, 36, .35); }
+/* zone 03 - transmission notice: plain, no controls */
+.transmission { border-color: #3b2f6b; background: linear-gradient(160deg, rgba(34, 24, 66, .55), rgba(5, 2, 12, .9)); }
+.transmission .eyebrow { color: var(--violet2); }
+.transmission h2 { color: #e9d5ff; font-family: var(--mono); text-transform: uppercase; letter-spacing: .12em; font-size: 15px; }
+.transmission p { margin: 8px 0; }
 code { font-family: var(--mono); font-size: .92em; }
 .foot { text-align: center; color: var(--dim); font: 12px/1.7 var(--mono); letter-spacing: .03em; padding: 24px 20px; border-top: 1px solid var(--line); }
 
@@ -99,4 +91,4 @@ code { font-family: var(--mono); font-size: .92em; }
   @keyframes blink { 50% { opacity: .35; } }
   @keyframes drift { to { background-position: 64px 64px, 64px 64px; } }
 }
-@media (forced-colors: active) { .ring, .beam, .stage { display: none; } .demo, .directory, .status-banner { border: 2px solid CanvasText; } }
+@media (forced-colors: active) { .ring, .beam, .stage { display: none; } .transmission, .directory, .status-banner { border: 2px solid CanvasText; } }

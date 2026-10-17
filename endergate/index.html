@@ -8,7 +8,7 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>ENDERGATE — public gateway</title>
   <link rel="stylesheet" href="endergate.css" />
-  <link rel="stylesheet" href="demo.css" />
+  <link rel="stylesheet" href="gate.css" />
   <link rel="icon" href="data:," />
 </head>
 <body data-layer="gate">
@@ -61,23 +61,15 @@
       </ol>
     </section>
 
-    <section class="panel demo" aria-labelledby="h-demo">
-      <p class="eyebrow">Zone 03 · Visual demo</p>
-      <p class="demo-flag" role="note"><strong>DEMO — local to this browser only.</strong> NOT encrypted. NOT private. NOT sent to anyone.</p>
-      <h2 id="h-demo">Demo transmission console</h2>
-      <p class="dim">This console only shows how a transmission console will look. Entries are saved in this browser (<code>localStorage</code>) as plain text. Nobody else can receive them, and nothing here is protected: anyone using this browser, and other pages on this website's address, can read them. Do not type anything you want to keep confidential.</p>
-      <div role="log" aria-live="polite" aria-label="Local demo log"><ol class="log" id="log"></ol></div>
-      <form id="demo-form" class="inline" autocomplete="off">
-        <label class="sr" for="demo-text">Demo message (stays in this browser)</label>
-        <input id="demo-text" name="text" maxlength="500" placeholder="Type a demo message…" />
-        <button type="submit">Add to local log</button>
-      </form>
-      <p class="note" id="demo-status" role="status"></p>
-      <button type="button" class="link" id="demo-clear">Clear the local log</button>
+    <section class="panel transmission" aria-labelledby="h-tx">
+      <p class="eyebrow">Zone 03 · Transmission</p>
+      <h2 id="h-tx">Transmission</h2>
+      <p><strong>Transmission is not available on this page.</strong> There is no message console here: nothing can be typed, sent or received, and nothing is stored. Real transmission runs only on the project's own server, which is not on the internet.</p>
+      <p class="dim">Players reach it through their own access on that server, not through this page.</p>
     </section>
   </main>
 
   <footer class="foot">Static public edition · no accounts · no tracking · no network requests from this page.</footer>
-  <script type="module" src="demo-console.js"></script>
+  <script type="module" src="gate.js"></script>
 </body>
 </html>
