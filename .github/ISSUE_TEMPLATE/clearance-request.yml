@@ -1,0 +1,35 @@
+name: Request clearance to read restricted records
+description: Ask the Office of the President for access to a restricted record. Everything you write here is public.
+title: "[Clearance] "
+labels: ["clearance-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Everything on this form is public** (GitHub issues on this repository are visible to everyone).
+        Give only your in-world name and reason. Do not include passwords, personal information or anything confidential.
+        Approved readers are given access by the site owner inside ENDERGATE; nothing is published here.
+  - type: input
+    id: name
+    attributes:
+      label: In-world name
+    validations:
+      required: true
+  - type: dropdown
+    id: record
+    attributes:
+      label: Record you need
+      options:
+        - WFDIR-001 (World Finance Directorate)
+        - NIB-001 (National Intelligence Bureau)
+        - MTI-001 (Harbour Registry)
+        - PREX-001 (Presidential Executive Directives)
+        - RIID-C-2026-0011 (RIID case file)
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why do you need to know?
+    validations:
+      required: true
