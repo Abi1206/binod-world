@@ -119,6 +119,7 @@ export async function cls(system, path, { method = 'GET', body } = {}) {
   if (p === '/session') return { system, username: c.username, role_title: c.title, tier: c.tier, clearance: tierLabel(c.tier, pt.short) };
   const all = await readable(system, c);
   if (p === '/documents') return { documents: all.map(meta) };
+  if (p === '/records') return { records: all.map((r) => ({ ...meta(r), format: r.format, content: r.content })) };
   if (p === '/search') {
     const term = (q.get('q') ?? '').replace(/[^A-Za-z0-9 _.-]/g, '').trim().slice(0, 40).toLowerCase();
     // titles, tags and reference numbers of records this session can decrypt; the body text is never searched
@@ -129,7 +130,7 @@ export async function cls(system, path, { method = 'GET', body } = {}) {
   if (m) {
     const r = all.find((x) => x.ref === decodeURIComponent(m[1]) && canReadTier(c.tier, x.tier));
     if (!r) throw notFound();   // same answer for "does not exist" and "above your clearance"
-    return { ...meta(r), content: r.content };
+    return { ...meta(r), format: r.format, content: r.content };
   }
   throw notFound();
 }

@@ -31,3 +31,6 @@ body.cls main { max-width: 1100px; }
 .cls-viewer h2 { margin-top: 4px; }
 .cls-text { margin: 0 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; }
 @media (max-width: 760px) { .cls-grid { grid-template-columns: minmax(0, 1fr); } .cls-search { flex-wrap: wrap; } }
+
+/* Government theme: dim the locked-layer markers by colour only, so the text keeps enough contrast. */
+body.cls .layer.locked { opacity: 1; color: var(--dim); }

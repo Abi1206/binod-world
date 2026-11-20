@@ -68,7 +68,7 @@ export async function loadRecords(vault, system, keys) {
     const blob = blobs[i];
     if (!blob) continue;
     const { records } = await open(await aesKey(unb64(keys[t])), blob);
-    for (const r of records) out.push({ ref: r.ref, title: r.title, tags: r.tags ?? [], content: r.content, tier: t });
+    for (const r of records) out.push({ ref: r.ref, title: r.title, tags: r.tags ?? [], content: r.content, format: r.format ?? 'text', tier: t });
   }
   return out.sort((a, b) => RANK[a.tier] - RANK[b.tier] || a.ref.localeCompare(b.ref));
 }
