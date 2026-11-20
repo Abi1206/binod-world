@@ -452,6 +452,12 @@ img { max-width: 100%; display: block; }
 .wanted-facts li { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); color: var(--text-dim); }
 .wanted-facts li:last-child { border-bottom: none; }
 .wanted-facts strong { color: var(--text); font-weight: 600; }
+.wanted-banner { display: inline-block; margin-bottom: 10px; padding: 4px 10px; border: 1px solid var(--red); background: var(--red-dim); color: #ffbdbd; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; }
+.wanted-subhead { margin: 18px 0 6px; font-family: var(--display); font-size: 1rem; color: var(--text); }
+.wanted-text { margin: 0 0 8px; font-size: 0.85rem; line-height: 1.6; color: var(--text-dim); }
+.wanted-offences { margin: 0 0 4px 18px; padding: 0; font-size: 0.85rem; line-height: 1.6; color: var(--text-dim); }
+.wanted-offences li { margin-bottom: 4px; }
+.wanted-offences strong { color: var(--text); }
 .wanted-reward { margin-top: 14px; padding: 10px 14px; background: var(--amber-dim); border-left: 3px solid var(--amber); font-family: var(--mono); font-size: 0.8rem; color: var(--amber); }
 
 /* ─── RECRUITMENT ────────────────────────────────────────────────── */

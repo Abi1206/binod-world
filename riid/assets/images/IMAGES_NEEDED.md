@@ -11,9 +11,6 @@ Applies to both the public portal (`riid/`) and the Classified Network (`riid/cl
 | `favicon.png` | ✅ Provided | Simplified RIID crest — browser tab icon |
 | `og-image.png` | ✅ Provided | RIID crest — social share card |
 | `hero-bg.png` | ✅ Provided | RIID Headquarters at night, helicopters overhead — Home page hero background |
-| `hq-construction-01.png` | ✅ Provided | Groundbreaking-stage construction site render, 07 July 2026 |
-| `hq-construction-02.png` | ✅ Provided | Stage 02 — Foundation construction render, target 21 July 2026 |
-| `hq-concept-render.png` | ✅ Provided | Finished RIID Headquarters — front gate concept render |
 
 ## ABOUT PAGE
 
