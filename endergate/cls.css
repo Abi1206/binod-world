@@ -1,0 +1,33 @@
+/* Classified portals (RIID / Government Top Secret). Colours come from tokens so each system has its own identity inside the End layer. */
+body.cls-riid[data-layer="end"] { --accent: #38bdf8; --accent2: #0c4a6e; --line: #123a52; --panel: #061520; --panel2: #0a1d2b; --void: #02080d; --ink: #e2f1fa; --dim: #8fb0c4; --glow: 0 0 22px rgba(56, 189, 248, .22); font-family: var(--mono); }
+body.cls-gov[data-layer="end"]  { --accent: #f59e0b; --accent2: #7c2d12; --line: #4a2a0e; --panel: #150d05; --panel2: #1c1207; --void: #0a0502; --ink: #fbeccc; --dim: #c9a672; --glow: 0 0 22px rgba(245, 158, 11, .22); font-family: var(--mono); }
+body.cls::after { background: repeating-linear-gradient(transparent 0 3px, rgba(0, 0, 0, .18) 3px 4px) !important; }
+body.cls main { max-width: 1100px; }
+.cls-banner { display: block; margin: 8px 0 16px; padding: 6px 12px; border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent2) 45%, var(--void)); color: var(--ink); letter-spacing: .18em; font-size: 12px; text-align: center; }
+.cls-login { max-width: 460px; margin: 28px auto; padding: 22px; background: linear-gradient(160deg, var(--panel2), var(--panel)); border: 1px solid var(--line); border-top: 3px solid var(--accent); display: grid; gap: 12px; }
+.cls-login h1, .cls-head h1 { letter-spacing: .1em; }
+.cls-sub { margin: 0; color: var(--dim); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.cls-warn { margin: 0; padding: 10px 12px; border-left: 3px solid var(--accent); background: color-mix(in srgb, var(--accent2) 22%, var(--void)); font-size: 13px; line-height: 1.5; color: var(--ink); }
+.cls-login label { display: grid; gap: 4px; font-size: 13px; color: var(--dim); }
+.cls-login input, .cls-search input { padding: 9px 10px; font: inherit; color: var(--ink); background: var(--void); border: 1px solid var(--line); }
+.cls-status { min-height: 1.4em; margin: 4px 0; color: var(--dim); font-size: 14px; }
+.cls-status.err { color: #ff9aa8; }
+.cls-head { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 12px; }
+.cls-head h1 { margin: 0; font-size: clamp(20px, 4vw, 30px); }
+.cls-clear { display: grid; gap: 2px; padding: 8px 14px; border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent2) 35%, var(--void)); }
+.cls-clear-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+.cls-hint { color: var(--dim); font-size: 13px; }
+.cls-search { display: flex; gap: 8px; margin: 10px 0; }
+.cls-search input { flex: 1 1 auto; min-width: 0; }
+.cls-grid { display: grid; grid-template-columns: minmax(240px, 380px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.cls-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.cls-list li { border-bottom: 1px solid var(--line); }
+.cls-open { display: grid; gap: 6px; width: 100%; min-height: 44px; text-align: left; border: 0; border-radius: 0; background: none; padding: 10px 6px; color: var(--ink); }
+.cls-open:hover { background: color-mix(in srgb, var(--accent2) 45%, var(--void)); box-shadow: none; }
+.cls-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--dim); }
+.cls-ref { color: var(--accent); letter-spacing: .06em; }
+.cls-class { padding: 0 6px; border: 1px solid var(--accent); font-size: 11px; letter-spacing: .1em; color: var(--ink); }
+.cls-viewer { padding: 16px 18px; border: 1px solid var(--line); background: linear-gradient(160deg, var(--panel2), var(--panel)); min-height: 220px; }
+.cls-viewer h2 { margin-top: 4px; }
+.cls-text { margin: 0 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; }
+@media (max-width: 760px) { .cls-grid { grid-template-columns: minmax(0, 1fr); } .cls-search { flex-wrap: wrap; } }
