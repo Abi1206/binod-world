@@ -19,7 +19,8 @@ const store = {
 const clsKey = (system) => `bwn_static_cls_${system}`;
 
 let vaultPromise;
-const vault = () => (vaultPromise ??= fetch(new URL('data/vault.json', document.baseURI), { cache: 'no-cache' })   // always revalidate: a changed password or record is picked up on the next page load.then((r) => { if (!r.ok) throw new ApiError(0, 'network', 'The access data could not be loaded.'); return r.json(); }));
+// cache: 'no-cache' = always revalidate, so a changed password or record is picked up on the next page load
+const vault = () => (vaultPromise ??= fetch(new URL('data/vault.json', document.baseURI), { cache: 'no-cache' }).then((r) => { if (!r.ok) throw new ApiError(0, 'network', 'The access data could not be loaded.'); return r.json(); }));
 
 function egSession() {
   const s = store.get(EG_KEY);
