@@ -1,6 +1,6 @@
 {
     "_meta":  {
-                  "exportedAtDay":  40123,
+                  "exportedAtDay":  42820,
                   "note":  "Auto-exported from Binod World Government ID Panel"
               },
     "publications":  [
@@ -104,6 +104,21 @@
                              "day":  40041,
                              "status":  "published",
                              "content":  "Government land is public to all the participants in the Binod. People shall be accountable and can be found guilty of illegal occupation of Government land These illegal occupation will lead to Acquistion of the respective land to the government or destroy",
+                             "tags":  [
+                                          "law",
+                                          "government"
+                                      ]
+                         },
+                         {
+                             "id":  "LAW-008",
+                             "type":  "law",
+                             "title":  "Official Calendar and Records Act",
+                             "publishedBy":  "ROLEX5834",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  42820,
+                             "status":  "published",
+                             "content":  "The Unified Binod Calendar (UBC), kept by BIASR, is the official calendar.",
                              "tags":  [
                                           "law",
                                           "government"
@@ -570,13 +585,45 @@
                                       ]
                          },
                          {
+                             "id":  "ELECT-011",
+                             "type":  "election",
+                             "title":  "Election #11 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  40141,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  1,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
+                             "id":  "ELECT-012",
+                             "type":  "election",
+                             "title":  "Election #12 — ROLEX5834 Elected",
+                             "publishedBy":  "Binod World Government",
+                             "office":  "President",
+                             "country":  "Bavaria",
+                             "day":  42820,
+                             "status":  "elected",
+                             "leader":  "ROLEX5834",
+                             "totalVotes":  0,
+                             "tags":  [
+                                          "election",
+                                          "presidential"
+                                      ]
+                         },
+                         {
                              "id":  "PRES-CURRENT",
                              "type":  "election",
                              "title":  "ROLEX5834 — World President",
                              "publishedBy":  "Binod World Government",
                              "office":  "President",
                              "country":  "Bavaria",
-                             "day":  40079,
+                             "day":  42820,
                              "status":  "active",
                              "leader":  "ROLEX5834",
                              "termNumber":  1,
