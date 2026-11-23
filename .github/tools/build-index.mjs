@@ -9,7 +9,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { collectPublic } from './public-corpus.mjs';
 
-export const CANONICAL_BASE = 'https://abi1206.github.io/binod-world/';
+export const CANONICAL_BASE = 'https://gov.binodworld.in/';
 
 /** @returns {{ text: string, count: number, sha256: string }} */
 export function buildIndexText({ docsDir, publicBaseUrl = CANONICAL_BASE }) {
