@@ -117,7 +117,15 @@ export async function cls(system, path, { method = 'GET', body } = {}) {
 
   const c = clsSession(system);
   if (p === '/session') return { system, username: c.username, role_title: c.title, tier: c.tier, clearance: tierLabel(c.tier, pt.short) };
-  const all = await readable(system, c);
+  const everything = await readable(system, c);
+  // data records (the tracker's targets) are read only by their own page, never listed, searched or shown as documents
+  const all = everything.filter((r) => r.format !== 'tracker-data');
+  if (p === '/features') return { tracker: everything.some((r) => r.format === 'tracker-data') };
+  if (p === '/tracker') {
+    const r = everything.find((x) => x.format === 'tracker-data' && canReadTier(c.tier, x.tier));
+    if (!r) throw notFound();   // same answer for "no such feature" and "above your clearance"
+    return JSON.parse(r.content);
+  }
   if (p === '/documents') return { documents: all.map(meta) };
   if (p === '/records') return { records: all.map((r) => ({ ...meta(r), format: r.format, content: r.content })) };
   if (p === '/search') {

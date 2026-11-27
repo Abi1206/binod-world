@@ -91,6 +91,7 @@ async function dashboard(info) {
   if (SYSTEM === 'gov-top-secret') return govArchive(info);
   const me = await cls('/session');
   const { documents } = await cls('/documents');
+  let feats = {}; try { feats = await cls('/features'); } catch { /* optional features */ }
   const viewer = el('article', { class: 'cls-viewer', 'aria-live': 'polite', tabindex: '-1' }, el('p', { class: 'cls-hint' }, 'Select a record to open it.'));
   const list = el('ul', { class: 'cls-list' });
   const st = el('p', { class: 'cls-status', role: 'status' });
@@ -126,6 +127,7 @@ async function dashboard(info) {
       el('div', {}, el('h1', {}, info.name), el('p', { class: 'cls-sub' }, `Operator ${me.username}${me.role_title ? ' · ' + me.role_title : ''}`)),
       el('div', { class: 'cls-clear', role: 'status' }, el('span', { class: 'cls-clear-label' }, 'Clearance'), el('strong', {}, me.clearance)),
       el('button', { type: 'button', class: 'link', onclick: async () => { try { await cls('/logout', { method: 'POST' }); } catch { /* already ended */ } location.reload(); } }, 'End classified session')),
+    feats.tracker ? el('p', { class: 'cls-hint' }, el('a', { href: 'riid-tracker.html' }, 'Open the RIID Bounty Tracker (world map) →')) : null,
     el('p', { class: 'cls-hint' }, 'Search covers the titles, tags and reference numbers of records you are cleared for. Document text is never searched.'),
     search, st,
     el('div', { class: 'cls-grid' }, el('section', {}, el('h2', {}, FLAVOUR.docs), list), viewer));
